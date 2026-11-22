@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, LayoutDashboard, Menu, X } from 'lucide-react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import Brand from '../components/Brand.jsx'
-import './Header.css'
+import './AppLayout.css'
 
 const navigation = [
   { label: 'Accueil', to: '/' },
@@ -20,7 +20,7 @@ const pageTitles = {
   administration: 'Administration démo',
 }
 
-export default function Header() {
+export default function AppLayout() {
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
   const toggleRef = useRef(null)
@@ -89,6 +89,15 @@ export default function Header() {
       <main id="contenu" ref={mainRef} tabIndex={-1}>
         <Outlet />
       </main>
+      <footer className="site-footer">
+        <div className="page-shell footer-inner">
+          <Brand />
+          <p>Projet de démonstration. Les données municipales sont fictives et les signalements sont conservés dans ce navigateur. Les visuels sont fournis à titre d’illustration. Météo par <a href="https://open-meteo.com/" className="weather-source">Open-Meteo</a>.</p>
+          <Link className="text-link" to="/administration">
+            Administration démo <ArrowUpRight size={15} aria-hidden="true" />
+          </Link>
+        </div>
+      </footer>
     </div>
   )
 }

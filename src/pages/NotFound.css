@@ -1,0 +1,29 @@
+@reference "../styles.css";
+
+.not-found {
+  @apply py-12 sm:py-20;
+}
+
+.not-found-panel {
+  @apply mx-auto max-w-xl px-6 py-12 text-center sm:px-12;
+}
+
+.not-found-icon {
+  @apply mx-auto;
+}
+
+.not-found-label {
+  @apply mt-5;
+}
+
+.not-found-title {
+  @apply mt-2;
+}
+
+.not-found-message {
+  @apply mt-3;
+}
+
+.not-found-actions {
+  @apply mt-7 flex flex-wrap justify-center gap-3;
+}

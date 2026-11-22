@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, LayoutDashboard, Menu, X } from 'lucide-react'
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
+import { LayoutDashboard, Menu, X } from 'lucide-react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import Brand from '../components/Brand.jsx'
 import './AppLayout.css'
 
@@ -17,7 +17,7 @@ const pageTitles = {
   'tableau-de-bord': 'Mon tableau de bord',
   signalements: 'Suivi du signalement',
   actualites: 'Actualités et événements',
-  administration: 'Administration démo',
+  'administration-demo': 'Administration démo',
 }
 
 export default function AppLayout() {
@@ -93,9 +93,6 @@ export default function AppLayout() {
         <div className="page-shell footer-inner">
           <Brand />
           <p>Projet de démonstration. Les données municipales sont fictives et les signalements sont conservés dans ce navigateur. Les visuels sont fournis à titre d’illustration. Météo par <a href="https://open-meteo.com/" className="weather-source">Open-Meteo</a>.</p>
-          <Link className="text-link" to="/administration">
-            Administration démo <ArrowUpRight size={15} aria-hidden="true" />
-          </Link>
         </div>
       </footer>
     </div>

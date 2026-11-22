@@ -23,7 +23,7 @@ export default function App() {
         <Route path="signalements/:id" element={<ReportDetails />} />
         <Route path="actualites" element={<News />} />
         <Route path="actualites/:slug" element={<NewsDetails />} />
-        <Route path="administration" element={<DemoAdmin />} />
+        <Route path="administration-demo" element={<DemoAdmin />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

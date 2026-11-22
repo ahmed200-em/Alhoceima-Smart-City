@@ -29,9 +29,9 @@ Le build génère le dossier `dist/`. Sur un hébergement statique, configurer l
 | Signaler un problème | Formulaire avec validation, photo facultative, récapitulatif et référence unique après enregistrement |
 | Mon tableau de bord | Compteurs, recherche et filtres En attente, En cours et Résolu. Chaque fiche affiche son historique et sa progression |
 | Actualités et événements | Recherche, filtres par type et fiches des annonces et des événements |
-| Administration démo | Mise à jour du statut d’un signalement depuis le lien en pied de page |
+| Administration démo | Mise à jour du statut d’un signalement depuis une vue accessible par son adresse directe |
 
-Pour essayer le suivi, créer un signalement, noter sa référence et ouvrir la fiche. Dans **Administration démo**, choisir **En cours** puis enregistrer. Revenir à la fiche pour retrouver la mise à jour et son horodatage. Les exemples inclus permettent également d’explorer les trois statuts dès le premier lancement.
+Pour essayer le suivi, créer un signalement, noter sa référence et ouvrir la fiche. Ouvrir **Administration démo** par son adresse directe, choisir **En cours** puis enregistrer. Revenir à la fiche pour retrouver la mise à jour et son horodatage. Les exemples inclus permettent également d’explorer les trois statuts dès le premier lancement.
 
 ## Organisation du code
 

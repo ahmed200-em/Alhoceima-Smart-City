@@ -99,10 +99,6 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.footer-inner .text-link {
-  flex: none;
-  font-size: 13px;
-}
 
 @media (max-width: 980px) {
   .header-inner {
@@ -148,8 +144,5 @@
   .footer-inner {
     flex-wrap: wrap;
     gap: 10px 16px;
-  }
-  .footer-inner p {
-    order: 2;
   }
 }

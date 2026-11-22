@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import AppLayout from './layouts/AppLayout.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Home from './pages/Home.jsx'
 
 function PreviewPage({ title }) {
   return (
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <Routes>
       <Route element={<AppLayout />}>
-        <Route index element={<PreviewPage title="SmartCity Al Hoceima" />} />
+        <Route index element={<Home />} />
         <Route path="services" element={<PreviewPage title="Services municipaux" />} />
         <Route path="services/:slug" element={<PreviewPage title="Fiche de service" />} />
         <Route path="signaler" element={<PreviewPage title="Signaler un problème" />} />

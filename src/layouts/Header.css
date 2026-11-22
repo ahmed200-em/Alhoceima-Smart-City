@@ -1,0 +1,129 @@
+.site {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.site > main {
+  flex: 1;
+  min-width: 0;
+}
+.skip-link {
+  position: fixed;
+  z-index: 20;
+  inset: 12px auto auto 12px;
+  transform: translateY(-160%);
+  background: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  position: relative;
+  z-index: 5;
+  border-bottom: 1px solid #dfe7ef;
+  background: #fff;
+}
+.header-inner {
+  width: min(1200px, calc(100% - clamp(32px, 8vw, 112px)));
+  min-height: 72px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(5px, 1.3vw, 21px);
+}
+.site-nav a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 7px;
+  padding: 0 10px;
+  color: #34495f;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background-color 0.18s,
+    color 0.18s;
+}
+.site-nav a:hover,
+.site-nav a.active {
+  background: #eef5fc;
+  color: #114f88;
+}
+.site-nav .dashboard-link {
+  color: #12528c;
+  border: 1px solid #d3e3f1;
+  padding-inline: 13px;
+  font-weight: 600;
+}
+.menu-toggle {
+  display: none;
+  min-height: 44px;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #12528c;
+  padding: 0 9px;
+}
+
+@media (max-width: 980px) {
+  .header-inner {
+    min-height: 64px;
+    gap: 12px;
+  }
+  .site-nav {
+    gap: 2px;
+  }
+  .site-nav a {
+    font-size: 11px;
+    padding-inline: 7px;
+  }
+  .site-nav .dashboard-link {
+    padding-inline: 8px;
+  }
+}
+
+@media (max-width: 760px) {
+  .menu-toggle {
+    display: inline-flex;
+  }
+  .site-nav {
+    display: none;
+    position: absolute;
+    inset: 100% 0 auto;
+    background: white;
+    border-block: 1px solid var(--color-civic-line);
+    box-shadow: var(--shadow-hover);
+    padding: 8px 16px 12px;
+  }
+  .site-nav.is-open {
+    display: grid;
+  }
+  .site-nav a {
+    justify-content: flex-start;
+    padding-inline: 12px;
+    font-size: 14px;
+  }
+  .site-nav .dashboard-link {
+    padding-inline: 12px;
+  }
+  .footer-inner {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+  }
+  .footer-inner p {
+    order: 2;
+  }
+}

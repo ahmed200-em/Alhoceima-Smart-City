@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", system-ui, sans-serif;
+  --color-navy: #102747;
+  --color-civic-blue: #115a98;
+  --color-civic-teal: #117775;
+  --color-civic-paper: #f5f7fa;
+  --color-civic-muted: #415268;
+  --color-civic-line: #dde5ed;
+}
+
+:root {
+  color-scheme: light;
+  --shadow-panel: 0 2px 4px #193b5e08;
+  --shadow-hover: 0 5px 14px #193b5e12;
+}
+
+@layer base {
+  body {
+    @apply m-0 bg-civic-paper font-sans text-navy antialiased;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  button,
+  select,
+  summary,
+  input[type="file"] {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  :focus-visible {
+    outline: 3px solid #1468ab;
+    outline-offset: 3px;
+  }
+  main:focus-visible {
+    outline-offset: -3px;
+  }
+  ::selection {
+    color: #123558;
+    background: #d5e9fb;
+  }
+}
+
+@layer components {
+  .page-shell {
+    width: min(1200px, calc(100% - clamp(32px, 8vw, 112px)));
+    margin-inline: auto;
+  }
+  .page-title {
+    @apply text-2xl font-semibold tracking-tight sm:text-3xl;
+  }
+  .muted {
+    color: var(--color-civic-muted);
+  }
+  .panel {
+    @apply rounded-xl border border-civic-line bg-white;
+    box-shadow: var(--shadow-panel);
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest text-civic-blue;
+  }
+  .button {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-transparent px-4 py-2 text-center text-sm font-semibold leading-tight;
+    transition:
+      background-color 0.18s,
+      border-color 0.18s,
+      color 0.18s,
+      box-shadow 0.18s,
+      transform 0.18s;
+  }
+  .button:active {
+    transform: translateY(1px);
+  }
+  .button:disabled {
+    opacity: 0.55;
+  }
+  .button-primary {
+    @apply border-civic-blue bg-civic-blue text-white;
+  }
+  .button-primary:not(:disabled):hover {
+    background: #0e4879;
+    border-color: #0e4879;
+  }
+  .button-secondary {
+    @apply border-civic-line bg-white text-civic-blue;
+  }
+  .button-secondary:not(:disabled):hover {
+    @apply border-civic-blue bg-blue-50;
+  }
+  .button-teal {
+    @apply border-civic-teal bg-civic-teal text-white;
+  }
+  .button-teal:not(:disabled):hover {
+    background: #0f6260;
+    border-color: #0f6260;
+  }
+  .text-link {
+    @apply inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-civic-blue;
+    text-underline-offset: 3px;
+  }
+  .text-link:hover {
+    text-decoration: underline;
+  }
+  .text-link svg,
+  .button svg {
+    flex: none;
+  }
+  .field-control {
+    @apply min-h-11 w-full rounded-lg border bg-white px-3 py-2 text-sm text-navy;
+    border-color: #cdd8e4;
+  }
+  .field-control::placeholder {
+    color: #65758a;
+  }
+  .field-control[aria-invalid="true"] {
+    border-color: #c24141;
+  }
+  .icon-tile {
+    @apply grid h-11 w-11 shrink-0 place-items-center rounded-lg;
+  }
+  .icon-blue {
+    background: #edf5fe;
+    color: #125994;
+  }
+  .icon-amber {
+    background: #fff5df;
+    color: #925700;
+  }
+  .icon-cyan {
+    background: #e8f6fa;
+    color: #146b86;
+  }
+  .icon-green {
+    background: #e8f6ef;
+    color: #207653;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

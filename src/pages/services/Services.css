@@ -1,0 +1,150 @@
+.svc-page {
+  padding-block: clamp(1.5rem, 3vw, 2.75rem) clamp(3rem, 7vw, 5.5rem);
+}
+
+.svc-filters {
+  display: grid;
+  gap: 1rem;
+}
+
+.svc-search {
+  position: relative;
+  width: min(100%, 50rem);
+}
+
+.svc-search input {
+  width: 100%;
+  padding-right: 3rem;
+}
+
+.svc-search > svg {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #516983;
+  pointer-events: none;
+}
+
+.svc-filter-chip {
+  min-height: 44px;
+  padding: .475rem 1rem;
+  border: 1px solid #dce5ee;
+  border-radius: 99px;
+  color: #203a52;
+  background: #fff;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.svc-filter-chip:hover {
+  border-color: #195d95;
+}
+
+.svc-filter-chip[aria-pressed='true'] {
+  border-color: #12578d;
+  color: #fff;
+  background: #12578d;
+}
+
+.svc-reset {
+  min-height: 44px;
+  color: #12578d;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.svc-reset:hover {
+  text-decoration: underline;
+}
+
+.svc-result-count {
+  margin: 1.25rem 0 .75rem;
+  color: #506278;
+  font-size: .875rem;
+}
+
+.svc-card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(1rem, 2.4vw, 1.625rem);
+  transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+
+.svc-card:hover {
+  transform: translateY(-2px);
+  border-color: #9ebdd9;
+  box-shadow: 0 7px 20px #124b7d10;
+}
+
+.svc-card h2 {
+  color: #102b4d;
+  font-size: 1.125rem;
+  font-weight: 650;
+}
+
+.svc-card h2 {
+  margin: .875rem 0 .3rem;
+}
+
+.svc-card p {
+  margin-bottom: 1rem;
+  font-size: .9375rem;
+}
+
+.svc-hours {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin-top: auto;
+  color: #285c4d;
+  font-size: .8125rem;
+  font-weight: 550;
+}
+
+.svc-card-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: .45rem;
+  color: #12578d;
+  font-size: .875rem;
+  font-weight: 650;
+}
+
+.svc-card:hover .svc-card-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.svc-empty {
+  display: grid;
+  justify-items: center;
+  gap: .85rem;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+.svc-empty > svg {
+  color: #55789b;
+}
+
+.svc-empty h2 {
+  color: #102b4d;
+  font-weight: 650;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-card, .svc-filter-chip {
+    transition: none;
+  }
+
+  .svc-card:hover {
+    transform: none;
+  }
+}

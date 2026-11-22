@@ -1,0 +1,25 @@
+.svc-icon {
+  display: inline-grid;
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: .625rem;
+  color: #12578d;
+  background: #eaf3fb;
+}
+
+.svc-icon--cyan {
+  color: #08618c;
+  background: #e7f7fb;
+}
+
+.svc-icon--amber {
+  color: #8d5800;
+  background: #fff4de;
+}
+
+.svc-icon--green {
+  color: #086449;
+  background: #e8f7ef;
+}

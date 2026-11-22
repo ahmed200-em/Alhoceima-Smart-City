@@ -1,0 +1,171 @@
+.svc-details-page {
+  padding-block: clamp(1.5rem, 3vw, 2.75rem) clamp(3rem, 7vw, 5.5rem);
+}
+
+.svc-details-empty {
+  display: grid;
+  justify-items: center;
+  gap: .85rem;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+.svc-details-empty > svg {
+  color: #55789b;
+}
+
+.svc-section-title,
+.svc-detail-panel h2 {
+  color: #102b4d;
+  font-size: 1.125rem;
+  font-weight: 650;
+}
+
+.svc-breadcrumb {
+  margin-bottom: 1.5rem;
+  color: #506278;
+  font-size: .875rem;
+}
+
+.svc-breadcrumb a,
+.svc-category-link {
+  color: #12578d;
+}
+
+.svc-category-link {
+  font-size: .8125rem;
+  font-weight: 650;
+}
+
+.svc-detail-lead {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.svc-detail-lead > .svc-icon {
+  width: clamp(3rem, 8vw, 5rem);
+  height: clamp(3rem, 8vw, 5rem);
+}
+
+.svc-detail-lead > .svc-icon > svg {
+  width: clamp(1.5rem, 4vw, 2.5rem);
+  height: auto;
+}
+
+.svc-detail-lead .button {
+  max-width: 100%;
+}
+
+.svc-detail-lead .button svg {
+  flex-shrink: 0;
+}
+
+.svc-sample-note {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  margin-bottom: 1.25rem;
+  padding: .75rem 1rem;
+  border: 1px solid #d5e7f2;
+  border-radius: .5rem;
+  color: #244c71;
+  background: #eef6fb;
+  font-size: .875rem;
+}
+
+.svc-sample-note svg {
+  flex-shrink: 0;
+  margin-top: .14rem;
+}
+
+.svc-detail-panel {
+  padding: clamp(1rem, 3vw, 1.625rem);
+}
+
+.svc-detail-row {
+  display: flex;
+  gap: .75rem;
+  padding: 1rem 0;
+  font-size: .9375rem;
+}
+
+.svc-detail-row + .svc-detail-row {
+  border-top: 1px solid #e7edf4;
+}
+
+.svc-detail-row:last-child {
+  padding-bottom: 0;
+}
+
+.svc-detail-row > svg {
+  flex-shrink: 0;
+  margin-top: .15rem;
+  color: #12578d;
+}
+
+.svc-detail-row dt,
+.svc-detail-row h3 {
+  margin-bottom: .2rem;
+  color: #102b4d;
+  font-weight: 650;
+}
+
+.svc-related {
+  margin-top: .75rem;
+}
+
+.svc-related li + li {
+  border-top: 1px solid #e7edf4;
+}
+
+.svc-related a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .875rem 1rem;
+  color: #12578d;
+}
+
+.svc-related a:hover strong {
+  text-decoration: underline;
+}
+
+.svc-related time {
+  display: block;
+  margin-bottom: .25rem;
+  color: #506278;
+  font-size: .8125rem;
+}
+
+.svc-related svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 479px) {
+  .svc-detail-lead {
+    display: grid;
+  }
+}
+
+.svc-breadcrumb a:hover,
+.svc-category-link:hover {
+  text-decoration: underline;
+}
+
+.svc-related-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: .45rem;
+  color: #12578d;
+  font-size: .875rem;
+  font-weight: 650;
+}
+
+a.svc-related-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

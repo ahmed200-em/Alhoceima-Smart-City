@@ -3,6 +3,7 @@ import {
   LayoutGrid, MapPin, Megaphone, Route, Send, Trash2, Zap,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import WeatherCard from '../components/WeatherCard.jsx'
 import { services } from '../data/services.js'
 import { announcements, events } from '../data/news.js'
 import './Home.css'
@@ -57,7 +58,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-
+          <WeatherCard />
         </div>
       </section>
 

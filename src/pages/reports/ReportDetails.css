@@ -1,0 +1,137 @@
+.report-detail-panel {
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.report-breadcrumb a:hover {
+  color: var(--report-blue);
+  text-decoration-color: currentColor;
+}
+
+.report-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  color: var(--report-muted);
+  font-size: .875rem;
+}
+
+.report-breadcrumb a {
+  color: var(--report-blue);
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+
+.report-detail-panel {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.report-category-tag {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  gap: 6px;
+  border-radius: 6px;
+  padding: 4px 9px;
+  color: #19466e;
+  background: #eaf4fc;
+  font-size: .875rem;
+  font-weight: 550;
+}
+
+.report-location {
+  display: flex;
+  align-items: start;
+  gap: 7px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--report-line);
+  color: var(--report-navy);
+  font-size: .95rem;
+}
+
+.report-location svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.report-description {
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+
+.report-detail-photo {
+  width: auto;
+  max-height: 380px;
+  max-width: 100%;
+  border-radius: 8px;
+  object-fit: contain;
+  object-position: left;
+}
+
+.report-timeline li {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: start;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 24px;
+}
+
+.report-timeline li:last-child { padding-bottom: 0; }
+
+.report-timeline li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 26px;
+  bottom: 0;
+  left: 13px;
+  width: 2px;
+  background: var(--report-line);
+}
+
+.report-timeline-node {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid #c2cfdd;
+  border-radius: 50%;
+  background: #f9fbfd;
+  color: #546d87;
+}
+
+.report-timeline [data-status='current'] .report-timeline-node {
+  background: var(--report-blue);
+  border-color: var(--report-blue);
+  color: white;
+}
+
+.report-timeline [data-status='passed'] .report-timeline-node {
+  background: #ecf8f2;
+  border-color: #badecc;
+  color: #076847;
+}
+
+.report-timeline strong { display: block; color: var(--report-navy); }
+
+.report-updates {
+  display: grid;
+  gap: 12px;
+}
+
+.report-updates li {
+  padding-left: 14px;
+  border-left: 2px solid #cbddea;
+}
+
+.report-updates time {
+  color: var(--report-navy);
+  font-size: .875rem;
+  font-weight: 600;
+}
+
+.report-updates p {
+  color: var(--report-muted);
+  font-size: .875rem;
+}

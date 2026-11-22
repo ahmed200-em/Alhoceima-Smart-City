@@ -1,0 +1,50 @@
+.report-admin-form label {
+  color: var(--report-navy);
+  font-size: .875rem;
+  font-weight: 600;
+}
+
+.report-admin-saved {
+  color: #087452;
+}
+
+.report-admin-label {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  gap: 6px;
+  border-radius: 6px;
+  padding: 4px 9px;
+  color: #19466e;
+  background: #eaf4fc;
+  font-size: .875rem;
+  font-weight: 550;
+}
+
+.report-admin-label {
+  margin: 0 0 9px;
+}
+
+.report-admin-item {
+  padding: 15px 20px;
+  border-top: 1px solid var(--report-line);
+}
+
+.report-admin-item .report-status {
+  margin-top: 6px;
+}
+
+.report-admin-form {
+  display: grid;
+  gap: 6px;
+}
+
+.report-admin-form .field-control {
+  width: auto;
+  min-width: 9.5rem;
+}
+
+.report-notice.report-admin-saved {
+  background: #ecf8f2;
+  border-color: #c6e5d8;
+}

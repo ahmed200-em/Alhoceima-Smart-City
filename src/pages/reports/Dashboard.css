@@ -1,0 +1,97 @@
+.report-summary-stat {
+  display: grid;
+  gap: 3px;
+  padding: 14px 16px;
+  color: var(--report-navy);
+}
+
+.report-summary-stat dt {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--report-muted);
+  font-size: .875rem;
+  font-weight: 500;
+}
+
+.report-summary-stat dd {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1.2;
+  font-weight: 650;
+}
+
+.report-summary-stat--pending dd,
+.report-summary-stat--pending svg { color: #9a5809; }
+.report-summary-stat--in-progress dd,
+.report-summary-stat--in-progress svg { color: var(--report-blue); }
+.report-summary-stat--resolved dd,
+.report-summary-stat--resolved svg { color: #076847; }
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: .875rem;
+}
+
+.report-table :is(th, td) {
+  padding: 12px 12px;
+  border-top: 1px solid var(--report-line);
+  vertical-align: middle;
+}
+
+.report-table tr > :first-child { padding-left: 20px; }
+.report-table tr > :last-child { padding-right: 20px; }
+
+.report-table thead {
+  background: var(--report-soft);
+  color: var(--report-navy);
+}
+
+.report-table :is(thead th, th[scope='row']) {
+  font-weight: 600;
+}
+
+.report-table tbody tr:hover {
+  background: #fafcfe;
+}
+
+.report-mobile-list {
+  display: none;
+}
+
+.report-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--report-line);
+  font-size: .875rem;
+}
+
+.report-pagination .button {
+  padding: 0;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+@media (max-width: 820px) {
+  .report-table { display: none; }
+  .report-mobile-list { display: grid; }
+  .report-mobile-list li {
+    display: grid;
+    gap: 5px;
+    padding: 13px 16px;
+    border-top: 1px solid var(--report-line);
+  }
+  .report-mobile-list .report-title-link {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .report-pagination { flex-wrap: wrap; }
+}

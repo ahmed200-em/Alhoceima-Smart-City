@@ -1,6 +1,6 @@
 import {
   ArrowRight, BusFront, CalendarDays, CheckCircle2, ChevronRight, ClipboardList, Droplet,
-  LayoutGrid, MapPin, Megaphone, Trash2, Zap,
+  LayoutGrid, MapPin, Megaphone, Route, Send, Trash2, Zap,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { services } from '../data/services.js'
@@ -12,6 +12,12 @@ const quickLinks = [
   { id: 'electricite', title: 'Électricité', description: 'Réseau et raccordement', icon: Zap, color: 'amber' },
   { id: 'eau', title: 'Eau', description: 'Qualité de l’eau et coupures', icon: Droplet, color: 'cyan' },
   { id: 'dechets', title: 'Gestion des déchets', description: 'Collecte et points de dépôt', icon: Trash2, color: 'green' },
+]
+
+const workflow = [
+  { to: '/signaler', title: 'Déposez un signalement', description: 'Décrivez le problème et précisez le lieu.', icon: Megaphone, color: 'cyan' },
+  { to: '/tableau-de-bord', title: 'Suivez son avancement', description: 'Retrouvez le statut dans votre tableau de bord.', icon: Route, color: 'blue' },
+  { to: '/tableau-de-bord?statut=resolu', title: 'Consultez la résolution', description: 'Vérifiez les dernières mises à jour du dossier.', icon: CheckCircle2, color: 'green' },
 ]
 
 const fullDate = new Intl.DateTimeFormat('fr-MA', { day: 'numeric', month: 'short', year: 'numeric' })
@@ -142,6 +148,20 @@ export default function Home() {
           </section>
         </div>
 
+        <section className="workflow-panel panel" aria-labelledby="comment-ca-marche">
+          <h2 id="comment-ca-marche">Comment ça marche ?</h2>
+          <ol className="grid gap-3 md:grid-cols-3">
+            {workflow.map(({ to, title, description, icon: Icon, color }) => (
+              <li key={title}>
+                <Link to={to} className="workflow-link">
+                  <span className={`icon-tile icon-${color}`}><Icon size={22} aria-hidden="true" /></span>
+                  <span><strong>{title}</strong><span>{description}</span></span>
+                  <Send className="workflow-arrow" size={15} aria-hidden="true" />
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </section>
       </div>
     </div>
   )

@@ -1,0 +1,100 @@
+.site-footer {
+  --footer-text: #ccdaea;
+
+  border-top: 3px solid #2ba5a1;
+  background: var(--color-navy);
+  color: white;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: clamp(28px, 7vw, 100px);
+  padding-block: clamp(32px, 5vw, 56px) 26px;
+}
+
+.footer-brand .brand {
+  color: white;
+}
+
+.footer-brand .brand img {
+  width: 42px;
+  height: 49px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-brand .brand strong {
+  font-size: 23px;
+}
+
+.footer-brand .brand span span {
+  color: #a8d6f4;
+}
+
+.footer-brand p {
+  max-width: 34ch;
+  margin-block: 13px 18px;
+  color: var(--footer-text);
+  font-size: 14px;
+}
+
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 4vw, 56px);
+}
+
+.footer-nav h2 {
+  margin-bottom: 7px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 6px;
+  color: var(--footer-text);
+  font-size: 14px;
+  text-underline-offset: 4px;
+  transition: color 0.18s;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus-visible {
+  color: white;
+  text-decoration: underline;
+}
+
+.site-footer a:focus-visible {
+  outline-color: #8ce7e4;
+}
+
+.footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  border-top: 1px solid #364b66;
+  padding-block: 15px 19px;
+  color: var(--footer-text);
+  font-size: 12px;
+}
+
+.footer-meta a {
+  color: #a8d6f4;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-meta a:hover {
+  color: white;
+}
+
+@media (max-width: 680px) {
+  .footer-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { LayoutDashboard, Menu, X } from 'lucide-react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import Brand from '../components/Brand.jsx'
+import Footer from '../components/Footer.jsx'
 import './AppLayout.css'
 
 const navigation = [
@@ -89,12 +90,7 @@ export default function AppLayout() {
       <main id="contenu" ref={mainRef} tabIndex={-1}>
         <Outlet />
       </main>
-      <footer className="site-footer">
-        <div className="page-shell footer-inner">
-          <Brand />
-          <p>Projet de démonstration. Les données municipales sont fictives et les signalements sont conservés dans ce navigateur. Les visuels sont fournis à titre d’illustration. Météo par <a href="https://open-meteo.com/" className="weather-source">Open-Meteo</a>.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

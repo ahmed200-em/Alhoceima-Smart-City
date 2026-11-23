@@ -53,6 +53,8 @@ React et JSX composent les écrans. React Router rend les fiches accessibles par
 
 Chaque page et composant visuel importe une feuille CSS du même nom, placée à côté de son fichier JSX. Par exemple, modifiez les liens de navigation dans `src/layouts/AppLayout.jsx` et leur apparence dans `src/layouts/AppLayout.css`. Les styles des contrôles partagés entre les écrans de signalement se trouvent dans `src/pages/reports/ReportUI.css`.
 
+Les liens du pied de page se modifient dans `src/components/Footer.jsx` et son apparence dans `src/components/Footer.css`.
+
 ## Météo et données locales
 
 L’accueil utilise Fetch API pour interroger la [Weather Forecast API d’Open-Meteo](https://open-meteo.com/en/docs) aux coordonnées d’Al Hoceima, dans le fuseau `Africa/Casablanca`. Il demande la température, le code météo et l’indicateur jour/nuit. La carte affiche le chargement, la réponse ou un bouton **Réessayer** après un échec. L’appel expire après huit secondes et ne requiert aucune clé pour cette démonstration.

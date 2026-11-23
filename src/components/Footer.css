@@ -14,24 +14,6 @@
   padding-block: clamp(32px, 5vw, 56px) 26px;
 }
 
-.footer-brand .brand {
-  color: white;
-}
-
-.footer-brand .brand img {
-  width: 42px;
-  height: 49px;
-  filter: brightness(0) invert(1);
-}
-
-.footer-brand .brand strong {
-  font-size: 23px;
-}
-
-.footer-brand .brand span span {
-  color: #a8d6f4;
-}
-
 .footer-brand p {
   max-width: 34ch;
   margin-block: 13px 18px;

@@ -1,31 +1,48 @@
 .brand {
+  --brand-ink: var(--color-navy);
+  --brand-accent: var(--color-civic-teal);
+  --brand-place: var(--color-civic-muted);
+
   display: inline-flex;
   align-items: center;
   flex: none;
-  gap: 7px;
+  gap: 9px;
   min-height: 48px;
   border-radius: 6px;
-  color: #103565;
-  line-height: 1.04;
+  color: var(--brand-ink);
 }
+
+.brand-inverse {
+  --brand-ink: #f2f8ff;
+  --brand-accent: #56daca;
+  --brand-place: #ccdaea;
+}
+
 .brand img {
   flex: none;
-  width: 37px;
-  height: 44px;
 }
-.brand strong,
-.brand span span {
+
+.brand-wordmark {
+  min-width: 0;
+}
+
+.brand-name {
   display: block;
-}
-.brand strong {
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 700;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
 }
-.brand span span {
+
+.brand-name span {
+  color: var(--brand-accent);
+}
+
+.brand-place {
+  display: block;
   margin-top: 3px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: #216aa9;
+  color: var(--brand-place);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }

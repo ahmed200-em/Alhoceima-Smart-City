@@ -1,4 +1,4 @@
-# SmartCity Al Hoceima
+# SmartRif Al Hoceima
 
 Portail citoyen de démonstration en français. Il réunit un annuaire de services, le suivi des signalements et un agenda local. L’interface reprend la maquette fournie, avec la typographie Poppins, la palette bleu et sarcelle et les illustrations de la baie.
 

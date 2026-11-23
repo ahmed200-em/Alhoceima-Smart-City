@@ -43,7 +43,7 @@ export default function Footer() {
       <div className="page-shell">
         <div className="footer-content">
           <div className="footer-brand">
-            <Brand />
+            <Brand inverse />
             <p>Portail de démonstration des services municipaux d’Al Hoceima.</p>
             <Link className="button button-teal" to="/signaler">
               Signaler un problème <ArrowRight size={16} aria-hidden="true" />

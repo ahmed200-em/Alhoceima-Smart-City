@@ -32,8 +32,8 @@ export default function AppLayout() {
     const segment = pathname.split('/')[1]
     const pageTitle = segment && (pageTitles[segment] || 'Page introuvable')
     document.title = pageTitle
-      ? `${pageTitle} · SmartCity Al Hoceima`
-      : 'SmartCity Al Hoceima · Portail citoyen'
+      ? `${pageTitle} · SmartRif Al Hoceima`
+      : 'SmartRif Al Hoceima · Portail citoyen'
 
     if (previousPath.current !== pathname) {
       previousPath.current = pathname

@@ -1,7 +1,7 @@
 import { reportCategories } from '../data/reports.js'
 
-const dateFormat = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'medium', timeZone: 'Africa/Casablanca' })
-const dateTimeFormat = new Intl.DateTimeFormat('fr-FR', {
+const dateFormat = new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium', timeZone: 'Africa/Casablanca' })
+const dateTimeFormat = new Intl.DateTimeFormat('en-GB', {
   dateStyle: 'medium', timeStyle: 'short', timeZone: 'Africa/Casablanca',
 })
 
@@ -10,7 +10,7 @@ export function formatReportDate(date, withTime = false) {
 }
 
 export function reportCategoryLabel(value) {
-  return reportCategories.find((category) => category.value === value)?.label ?? 'Autre'
+  return reportCategories.find((category) => category.value === value)?.label ?? 'Other'
 }
 
 function normalize(value) {

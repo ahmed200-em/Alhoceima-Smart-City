@@ -2,13 +2,13 @@ import { ArrowRight, CalendarDays, Clock3, MapPin, Newspaper, Search, SearchX } 
 import { useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { announcements, events } from '../../data/news.js'
-import { formatEventDates, formatNewsDate, formatNewsTime, getCityDate, getEventStatus, NewsBadge, NewsDateTile } from './NewsMeta.jsx'
+import { formatEventDates, formatNewsDate, getCityDate, getEventStatus, NewsBadge, NewsDateTile } from './NewsMeta.jsx'
 import './News.css'
 
 const types = [
-  { id: '', label: 'Tout' },
-  { id: 'annonces', label: 'Annonces' },
-  { id: 'evenements', label: 'Événements' },
+  { id: '', label: 'All' },
+  { id: 'annonces', label: 'Announcements' },
+  { id: 'evenements', label: 'Events' },
 ]
 
 function normalize(text) {
@@ -23,7 +23,7 @@ function NewsCard({ item, today }) {
       <div className="news-card-image">
         <img src={item.image} alt={item.imageAlt} style={{ objectPosition: item.imagePosition }} loading="lazy" decoding="async" width="640" height="360" />
         {isEvent && <NewsDateTile date={item.date} />}
-        {item.photo.illustrative && <span className="news-photo-label">Photo d’illustration</span>}
+        {item.photo.illustrative && <span className="news-photo-label">Illustrative photo</span>}
       </div>
       <div className="news-card-body">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -37,12 +37,12 @@ function NewsCard({ item, today }) {
         <h3 id={`news-${item.slug}`}>{item.title}</h3>
         {isEvent && (
           <p className="news-meta flex flex-wrap items-center gap-x-3 gap-y-1">
-            {item.time && <span><Clock3 size={14} aria-hidden="true" /> <time dateTime={item.time}>{formatNewsTime(item.time)}</time></span>}
+            {item.time && <span><Clock3 size={14} aria-hidden="true" /> <time dateTime={item.time}>{item.time}</time></span>}
             <span><MapPin size={14} aria-hidden="true" /> {item.location}</span>
           </p>
         )}
         <p className="muted">{item.summary}</p>
-        <span className="news-card-link">{isEvent ? 'Voir l’événement' : 'Lire l’annonce'} <ArrowRight size={16} aria-hidden="true" /></span>
+        <span className="news-card-link">{isEvent ? 'View event' : 'Read announcement'} <ArrowRight size={16} aria-hidden="true" /></span>
       </div>
     </Link>
   )
@@ -82,27 +82,27 @@ export default function News() {
   }
 
   const sections = [
-    { id: 'annonces', title: 'Dernières annonces', icon: Newspaper, entries: getEntries(announcements, selected !== 'evenements', 'decroissant') },
-    { id: 'evenements', title: 'Agenda local', icon: CalendarDays, entries: getEntries(events, selected !== 'annonces', 'decroissant') },
+    { id: 'annonces', title: 'Latest announcements', icon: Newspaper, entries: getEntries(announcements, selected !== 'evenements', 'decroissant') },
+    { id: 'evenements', title: 'Local events', icon: CalendarDays, entries: getEntries(events, selected !== 'annonces', 'decroissant') },
   ].filter(({ entries }) => entries.length > 0)
   const count = sections.reduce((total, section) => total + section.entries.length, 0)
 
   return (
     <div className="page-shell news-page">
       <header className="mb-6">
-        <h1 className="page-title">Actualités et événements</h1>
-        <p className="muted mt-2">Retrouvez les actualités locales et l’agenda d’Al Hoceima. Chaque fiche indique la source et le crédit photo.</p>
+        <h1 className="page-title">News &amp; events</h1>
+        <p className="muted mt-2">Find local news and events in Al Hoceima. Each listing includes a source and photo credit.</p>
       </header>
 
-      <section className="news-filters" aria-label="Rechercher et filtrer les publications">
-        <div className="news-tabs" role="group" aria-label="Type de publication">
+      <section className="news-filters" aria-label="Search and filter posts">
+        <div className="news-tabs" role="group" aria-label="Post type">
           {types.map(({ id, label }) => (
             <button type="button" key={id} aria-pressed={id === selected} onClick={() => updateFilter('type', id)}>{label}</button>
           ))}
         </div>
         <div className="news-filter-row">
           <div className="news-search">
-            <label className="sr-only" htmlFor="news-search">Rechercher une annonce ou un événement</label>
+            <label className="sr-only" htmlFor="news-search">Search announcements or events</label>
             <input
               className="field-control"
               id="news-search"
@@ -110,21 +110,21 @@ export default function News() {
               type="search"
               value={query}
               onChange={(event) => updateFilter('q', event.target.value)}
-              placeholder="Rechercher une annonce ou un événement…"
+              placeholder="Search announcements or events…"
             />
             <Search size={19} aria-hidden="true" />
           </div>
-          <label className="sr-only" htmlFor="news-sort">Trier par date</label>
+          <label className="sr-only" htmlFor="news-sort">Sort by date</label>
           <select className="field-control" id="news-sort" value={order} onChange={(event) => updateFilter('ordre', event.target.value)}>
-            <option value="">Tri par défaut</option>
-            <option value="croissant">Date croissante</option>
-            <option value="decroissant">Date décroissante</option>
+            <option value="">Default order</option>
+            <option value="croissant">Oldest first</option>
+            <option value="decroissant">Newest first</option>
           </select>
         </div>
       </section>
 
       <p className="news-results" role="status">
-        {count} {count === 1 ? 'publication' : 'publications'}
+        {count} {count === 1 ? 'post' : 'posts'}
       </p>
 
       {sections.map(({ id, title, icon: Icon, entries }) => (
@@ -139,9 +139,9 @@ export default function News() {
       {count === 0 && (
         <div className="panel news-empty">
           <SearchX size={32} aria-hidden="true" />
-          <h2>Aucune publication trouvée</h2>
-          <p className="muted">Essayez un autre mot-clé ou affichez toutes les publications.</p>
-          <button className="button button-secondary" type="button" onClick={resetFilters}>Afficher toutes les publications</button>
+          <h2>No posts found</h2>
+          <p className="muted">Try another search or view all posts.</p>
+          <button className="button button-secondary" type="button" onClick={resetFilters}>View all posts</button>
         </div>
       )}
     </div>

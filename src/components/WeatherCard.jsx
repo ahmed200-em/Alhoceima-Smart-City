@@ -4,14 +4,14 @@ import LoadingPlaceholder from './LoadingPlaceholder.jsx'
 import './WeatherCard.css'
 
 function condition({ code, isDay }) {
-  if (code === 0) return isDay ? [Sun, 'Ciel dégagé'] : [Moon, 'Nuit claire']
-  if (code <= 2) return [isDay ? CloudSun : CloudMoon, 'Partiellement nuageux']
-  if (code === 3) return [Cloud, 'Couvert']
-  if (code === 45 || code === 48) return [CloudFog, 'Brouillard']
-  if (code >= 95) return [CloudLightning, 'Orages']
-  if ((code >= 71 && code <= 77) || code === 85 || code === 86) return [CloudSnow, 'Neige']
-  if (code >= 51 && code <= 82) return [CloudRain, 'Pluie']
-  return [Cloud, 'Conditions inconnues']
+  if (code === 0) return isDay ? [Sun, 'Clear skies'] : [Moon, 'Clear night']
+  if (code <= 2) return [isDay ? CloudSun : CloudMoon, 'Partly cloudy']
+  if (code === 3) return [Cloud, 'Overcast']
+  if (code === 45 || code === 48) return [CloudFog, 'Fog']
+  if (code >= 95) return [CloudLightning, 'Thunderstorms']
+  if ((code >= 71 && code <= 77) || code === 85 || code === 86) return [CloudSnow, 'Snow']
+  if (code >= 51 && code <= 82) return [CloudRain, 'Rain']
+  return [Cloud, 'Unknown conditions']
 }
 
 export default function WeatherCard() {
@@ -20,20 +20,20 @@ export default function WeatherCard() {
   const loading = status === 'loading'
 
   return (
-    <aside className="weather-card" aria-label="Météo à Al Hoceima">
+    <aside className="weather-card" aria-label="Weather in Al Hoceima">
       {loading ? <LoadingPlaceholder className="weather-icon" /> : (
         <span className="weather-icon"><WeatherIcon size={25} aria-hidden="true" /></span>
       )}
       <div className="min-w-0">
-        <p className="weather-title">Météo à Al Hoceima</p>
+        <p className="weather-title">Weather in Al Hoceima</p>
         <div aria-live="polite" aria-atomic="true">
           {loading && (
             <p className="weather-detail weather-loading">
-              <span className="sr-only">Chargement de la météo…</span>
+              <span className="sr-only">Loading weather…</span>
               <LoadingPlaceholder className="weather-loading-line" />
             </p>
           )}
-          {status === 'error' && <p className="weather-detail">Météo indisponible</p>}
+          {status === 'error' && <p className="weather-detail">Weather unavailable</p>}
           {weather && (
             <p className="weather-detail"><strong>{weather.temperature} °C</strong> <span>·</span> {label}</p>
           )}
@@ -41,7 +41,7 @@ export default function WeatherCard() {
       </div>
       {status === 'error' && (
         <button className="weather-retry" type="button" onClick={retry}>
-          <RefreshCw size={14} aria-hidden="true" /> Réessayer
+          <RefreshCw size={14} aria-hidden="true" /> Try again
         </button>
       )}
     </aside>

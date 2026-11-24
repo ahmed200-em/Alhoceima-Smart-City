@@ -8,11 +8,11 @@ const parameters = new URLSearchParams({
 
 export async function fetchWeather(signal) {
   const response = await fetch(`https://api.open-meteo.com/v1/forecast?${parameters}`, { signal })
-  if (!response.ok) throw new Error(`Open-Meteo a répondu avec le code ${response.status}`)
+  if (!response.ok) throw new Error(`Open-Meteo returned status ${response.status}`)
 
   const { current } = await response.json()
   if (!Number.isFinite(current?.temperature_2m) || !Number.isInteger(current?.weather_code)) {
-    throw new Error('Réponse météo incomplète')
+    throw new Error('Incomplete weather response')
   }
 
   return {

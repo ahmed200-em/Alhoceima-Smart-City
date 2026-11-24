@@ -6,22 +6,22 @@ import './Footer.css'
 const linkGroups = [
   {
     id: 'services',
-    title: 'Services municipaux',
+    title: 'Municipal services',
     links: [
-      { label: 'Tous les services', to: '/services' },
-      { label: 'Transport urbain', to: '/services/transport-urbain' },
-      { label: 'Électricité', to: '/services/electricite' },
-      { label: 'Eau potable', to: '/services/eau-potable' },
-      { label: 'Gestion des déchets', to: '/services/gestion-des-dechets' },
+      { label: 'All services', to: '/services' },
+      { label: 'Public transport', to: '/services/transport-urbain' },
+      { label: 'Electricity', to: '/services/electricite' },
+      { label: 'Drinking water', to: '/services/eau-potable' },
+      { label: 'Waste management', to: '/services/gestion-des-dechets' },
     ],
   },
   {
     id: 'citoyens',
-    title: 'Vie citoyenne',
+    title: 'Community',
     links: [
-      { label: 'Suivre mes signalements', to: '/tableau-de-bord' },
-      { label: 'Annonces', to: '/actualites?type=annonces' },
-      { label: 'Événements', to: '/actualites?type=evenements' },
+      { label: 'Track my reports', to: '/tableau-de-bord' },
+      { label: 'Announcements', to: '/actualites?type=annonces' },
+      { label: 'Events', to: '/actualites?type=evenements' },
     ],
   },
 ]
@@ -44,13 +44,13 @@ export default function Footer() {
         <div className="footer-content" data-reveal-group>
           <div className="footer-brand" data-reveal>
             <Brand inverse />
-            <p>Portail de démonstration des services municipaux d’Al Hoceima.</p>
+            <p>A demonstration portal for municipal services in Al Hoceima.</p>
             <Link className="button button-teal" to="/signaler">
-              Signaler un problème <ArrowRight size={16} aria-hidden="true" />
+              Report a problem <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </div>
 
-          <nav className="footer-nav" aria-label="Navigation du pied de page" data-reveal>
+          <nav className="footer-nav" aria-label="Footer navigation" data-reveal>
             {linkGroups.map(({ id, title, links }) => (
               <section key={id} aria-labelledby={`footer-${id}`}>
                 <h2 id={`footer-${id}`}>{title}</h2>
@@ -65,8 +65,8 @@ export default function Footer() {
         </div>
 
         <div className="footer-meta">
-          <p>Données municipales fictives. Vos signalements restent dans ce navigateur.</p>
-          <p>Visuels d’illustration · Météo par <a href="https://open-meteo.com/">Open-Meteo</a></p>
+          <p>Service details are for demonstration. Your reports stay in this browser.</p>
+          <p>Illustrative imagery · Weather by <a href="https://open-meteo.com/">Open-Meteo</a></p>
         </div>
       </div>
     </footer>

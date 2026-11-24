@@ -8,19 +8,19 @@ import { useScrollReveal } from '../hooks/useScrollReveal.js'
 import './AppLayout.css'
 
 const navigation = [
-  { label: 'Accueil', to: '/' },
+  { label: 'Home', to: '/' },
   { label: 'Services', to: '/services' },
-  { label: 'Signaler un problème', to: '/signaler' },
-  { label: 'Actualités et événements', to: '/actualites' },
+  { label: 'Report a problem', to: '/signaler' },
+  { label: 'News & events', to: '/actualites' },
 ]
 
 const pageTitles = {
-  services: 'Services municipaux',
-  signaler: 'Signaler un problème',
-  'tableau-de-bord': 'Mon tableau de bord',
-  signalements: 'Suivi du signalement',
-  actualites: 'Actualités et événements',
-  'administration-demo': 'Administration démo',
+  services: 'Municipal services',
+  signaler: 'Report a problem',
+  'tableau-de-bord': 'My dashboard',
+  signalements: 'Report tracking',
+  actualites: 'News & events',
+  'administration-demo': 'Demo administration',
 }
 
 export default function AppLayout() {
@@ -34,10 +34,10 @@ export default function AppLayout() {
 
   useEffect(() => {
     const segment = pathname.split('/')[1]
-    const pageTitle = segment && (pageTitles[segment] || 'Page introuvable')
+    const pageTitle = segment && (pageTitles[segment] || 'Page not found')
     document.title = pageTitle
       ? `${pageTitle} · SmartRif Al Hoceima`
-      : 'SmartRif Al Hoceima · Portail citoyen'
+      : 'SmartRif Al Hoceima · Citizen portal'
 
     if (previousPath.current !== pathname) {
       previousPath.current = pathname
@@ -72,7 +72,7 @@ export default function AppLayout() {
 
   return (
     <div className="site" ref={siteRef}>
-      <a className="skip-link" href="#contenu">Aller au contenu</a>
+      <a className="skip-link" href="#contenu">Skip to content</a>
       <header className={`site-header${headerFloating ? ' is-floating' : ''}`} onKeyDown={closeMenu}>
         <div className="header-inner">
           <Brand />
@@ -85,12 +85,12 @@ export default function AppLayout() {
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-            {menuOpen ? 'Fermer' : 'Menu'}
+            {menuOpen ? 'Close' : 'Menu'}
           </button>
           <nav
             id="navigation-principale"
             className={`site-nav ${menuOpen ? 'is-open' : ''}`}
-            aria-label="Navigation principale"
+            aria-label="Main navigation"
           >
             {navigation.map(({ label, to }) => (
               <NavLink key={to} to={to} end={to === '/'} onClick={() => setMenuOpen(false)}>
@@ -103,7 +103,7 @@ export default function AppLayout() {
               onClick={() => setMenuOpen(false)}
             >
               <LayoutDashboard size={16} aria-hidden="true" />
-              Mon tableau de bord
+              My dashboard
             </NavLink>
           </nav>
         </div>

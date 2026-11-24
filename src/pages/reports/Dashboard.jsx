@@ -8,9 +8,9 @@ import './Dashboard.css'
 
 const summary = [
   { label: 'Total', status: 'all', icon: ClipboardList },
-  { label: 'En attente', status: 'pending', icon: Clock3 },
-  { label: 'En cours', status: 'in-progress', icon: LoaderCircle },
-  { label: 'Résolus', status: 'resolved', icon: CheckCircle2 },
+  { label: 'Pending', status: 'pending', icon: Clock3 },
+  { label: 'In progress', status: 'in-progress', icon: LoaderCircle },
+  { label: 'Resolved', status: 'resolved', icon: CheckCircle2 },
 ]
 
 const pageSize = 6
@@ -37,21 +37,21 @@ function ReportsTable({ reports }) {
   return (
     <>
       <table className="report-table" data-reveal>
-        <caption className="sr-only">Signalements et état de leur traitement</caption>
+        <caption className="sr-only">Reports and their current statuses</caption>
         <thead>
           <tr>
-            <th scope="col">Référence</th>
-            <th scope="col">Titre</th>
-            <th scope="col">Catégorie</th>
-            <th scope="col">Quartier</th>
+            <th scope="col">Reference</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Neighbourhood</th>
             <th scope="col">Date</th>
-            <th scope="col">Statut</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
           {reports.map((report) => (
             <tr key={report.id}>
-              <td><span className="report-reference">{report.id}</span>{report.sample && <small className="report-sample">Exemple</small>}</td>
+              <td><span className="report-reference">{report.id}</span>{report.sample && <small className="report-sample">Sample</small>}</td>
               <th scope="row"><Link className="report-title-link" to={`/signalements/${report.id}`}>{report.title}</Link></th>
               <td>{reportCategoryLabel(report.category)}</td>
               <td>{report.neighborhood}</td>
@@ -71,7 +71,7 @@ function ReportsTable({ reports }) {
             </div>
             <Link className="report-title-link" to={`/signalements/${report.id}`}>{report.title}</Link>
             <p className="report-help">{reportCategoryLabel(report.category)} · {report.neighborhood} · <time dateTime={report.createdAt}>{formatReportDate(report.createdAt)}</time></p>
-            {report.sample && <small className="report-sample">Exemple</small>}
+            {report.sample && <small className="report-sample">Sample</small>}
           </li>
         ))}
       </ul>
@@ -110,20 +110,20 @@ export default function Dashboard() {
     <div className="page-shell reports-page dashboard-page">
       <header className="report-page-heading flex flex-wrap items-start justify-between gap-4" data-enter>
         <div>
-          <h1 className="page-title">Mon tableau de bord</h1>
-          <p className="muted">Consultez vos signalements et l’état de leur traitement.</p>
+          <h1 className="page-title">My dashboard</h1>
+          <p className="muted">View your reports and track their status.</p>
         </div>
-        <Link className="button button-primary" to="/signaler"><Plus size={18} aria-hidden="true" /> Signaler un problème</Link>
+        <Link className="button button-primary" to="/signaler"><Plus size={18} aria-hidden="true" /> Report a problem</Link>
       </header>
 
       <LocalNotice>
-        Démonstration avec des signalements d’exemple. Vos ajouts restent dans ce navigateur, sans compte ni envoi à la commune.
+        This dashboard includes sample reports. Any reports you add stay in this browser.
       </LocalNotice>
       {storageError && <p className="report-banner-error" role="alert">{storageError}</p>}
       <ReportSummary reports={reports} />
 
       <section className="panel report-results" aria-labelledby="dashboard-reports-title">
-        <h2 id="dashboard-reports-title">Mes signalements</h2>
+        <h2 id="dashboard-reports-title">My reports</h2>
         <ReportFilters
           search={search}
           onSearch={(value) => { setSearch(value); setPage(1) }}
@@ -134,12 +134,12 @@ export default function Dashboard() {
           <>
             <ReportsTable reports={tableRows} />
             <div className="report-pagination">
-              <p className="report-help" role="status">{pageStart + 1}–{pageStart + tableRows.length} sur {filtered.length} signalement{filtered.length > 1 ? 's' : ''}</p>
+              <p className="report-help" role="status">{pageStart + 1}–{pageStart + tableRows.length} of {filtered.length} report{filtered.length > 1 ? 's' : ''}</p>
               {pageCount > 1 && (
-                <nav className="flex items-center gap-2" aria-label="Pages des signalements">
-                  <button type="button" className="button button-secondary" aria-label="Page précédente" disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}><ChevronLeft size={18} aria-hidden="true" /></button>
+                <nav className="flex items-center gap-2" aria-label="Report pages">
+                  <button type="button" className="button button-secondary" aria-label="Previous page" disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}><ChevronLeft size={18} aria-hidden="true" /></button>
                   <span aria-current="page">{currentPage} / {pageCount}</span>
-                  <button type="button" className="button button-secondary" aria-label="Page suivante" disabled={currentPage === pageCount} onClick={() => setPage(currentPage + 1)}><ChevronRight size={18} aria-hidden="true" /></button>
+                  <button type="button" className="button button-secondary" aria-label="Next page" disabled={currentPage === pageCount} onClick={() => setPage(currentPage + 1)}><ChevronRight size={18} aria-hidden="true" /></button>
                 </nav>
               )}
             </div>

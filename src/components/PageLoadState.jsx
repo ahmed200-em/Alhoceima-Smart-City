@@ -4,7 +4,7 @@ import './PageLoadState.css'
 export function PageLoading() {
   return (
     <div className="page-shell page-loading" role="status">
-      <span className="sr-only">Chargement de la page…</span>
+      <span className="sr-only">Loading page…</span>
       <LoadingPlaceholder className="page-loading-title" />
       <LoadingPlaceholder className="page-loading-intro" />
       <div className="page-loading-grid" aria-hidden="true">
@@ -25,10 +25,10 @@ export function PageLoadError() {
   return (
     <section className="page-shell page-loading" aria-labelledby="page-load-error">
       <div className="panel page-loading-card">
-        <h1 className="page-title" id="page-load-error">Impossible de charger cette page</h1>
-        <p className="muted">Vérifiez votre connexion, puis réessayez.</p>
+        <h1 className="page-title" id="page-load-error">This page could not load</h1>
+        <p className="muted">Check your connection and try again.</p>
         <button type="button" className="button button-primary" onClick={() => window.location.reload()}>
-          Réessayer
+          Try again
         </button>
       </div>
     </section>

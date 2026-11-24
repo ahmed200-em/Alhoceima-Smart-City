@@ -4,11 +4,11 @@ const maxStoredSize = 250 * 1024
 
 export async function prepareReportPhoto(file) {
   if (!acceptedPhotoTypes.split(',').includes(file.type)) {
-    throw new Error('Choisissez une image JPG, PNG ou WebP.')
+    throw new Error('Choose a JPG, PNG or WebP image.')
   }
 
   if (file.size > maxSourceSize) {
-    throw new Error('Choisissez une image de 10 Mo ou moins.')
+    throw new Error('Choose an image of 10 MB or less.')
   }
 
   const url = URL.createObjectURL(file)
@@ -32,10 +32,10 @@ export async function prepareReportPhoto(file) {
       if (preview.length <= maxStoredSize) return preview
     }
   } catch {
-    throw new Error('Cette photo est illisible. Choisissez une autre image.')
+    throw new Error('This photo could not be opened. Choose another image.')
   } finally {
     URL.revokeObjectURL(url)
   }
 
-  throw new Error('La photo reste trop volumineuse après compression. Essayez une image plus petite.')
+  throw new Error('The photo is still too large after compression. Try a smaller image.')
 }

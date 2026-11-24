@@ -3,13 +3,13 @@ import { reportStatuses, sampleReports } from '../data/reports.js'
 import { isStorageFull, readReports, reportsStorageKey, withReportsLock, writeReports } from '../services/reportStorage.js'
 
 const ReportsContext = createContext(null)
-const unavailableMessage = 'L’enregistrement local a échoué. Vérifiez que votre navigateur autorise le stockage et dispose d’assez d’espace.'
+const unavailableMessage = 'The changes could not be saved. Check that browser storage is enabled and has enough space.'
 
 function loadReports() {
   try {
     return { reports: readReports(), storageError: '' }
   } catch {
-    return { reports: sampleReports, storageError: 'Le stockage local est indisponible. Les signalements d’exemple restent consultables.' }
+    return { reports: sampleReports, storageError: 'Browser storage is unavailable. You can still view the sample reports.' }
   }
 }
 
@@ -30,7 +30,7 @@ export function ReportsProvider({ children }) {
       return await withReportsLock(() => {
         const currentReports = readReports()
         const createdAt = new Date().toISOString()
-        const year = new Intl.DateTimeFormat('fr-FR', { year: 'numeric', timeZone: 'Africa/Casablanca' }).format(new Date(createdAt))
+        const year = new Intl.DateTimeFormat('en-GB', { year: 'numeric', timeZone: 'Africa/Casablanca' }).format(new Date(createdAt))
         let id
 
         do {
@@ -52,7 +52,7 @@ export function ReportsProvider({ children }) {
       })
     } catch (error) {
       if (fields.photo && isStorageFull(error)) {
-        return { error: 'L’espace disponible est insuffisant pour enregistrer la photo. Vous pouvez enregistrer le signalement sans photo.', photoTooLarge: true }
+        return { error: 'There is not enough browser storage for the photo. You can save the report without it.', photoTooLarge: true }
       }
 
       return { error: unavailableMessage }
@@ -60,13 +60,13 @@ export function ReportsProvider({ children }) {
   }
 
   async function changeReportStatus(id, status) {
-    if (!reportStatuses.some((entry) => entry.value === status)) return { error: 'Statut inconnu.' }
+    if (!reportStatuses.some((entry) => entry.value === status)) return { error: 'Unknown status.' }
 
     try {
       return await withReportsLock(() => {
         const currentReports = readReports()
         const report = currentReports.find((entry) => entry.id === id)
-        if (!report) return { error: 'Ce signalement n’est plus disponible dans ce navigateur.' }
+        if (!report) return { error: 'This report is no longer available in this browser.' }
         if (report.status === status) {
           setData({ reports: currentReports, storageError: '' })
           return {}

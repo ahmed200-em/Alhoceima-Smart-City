@@ -6,7 +6,7 @@ export default function Brand({ inverse = false }) {
   const mark = inverse ? '/smartrif-mark-inverse.svg' : '/smartrif-mark.svg'
 
   return (
-    <Link to="/" className={inverse ? 'brand brand-inverse' : 'brand'} aria-label="SmartRif Al Hoceima, accueil">
+    <Link to="/" className={inverse ? 'brand brand-inverse' : 'brand'} aria-label="SmartRif Al Hoceima, home">
       <img src={mark} width={size} height={size} alt="" />
       <span className="brand-wordmark">
         <strong className="brand-name">Smart<span>Rif</span></strong>

@@ -19,8 +19,16 @@ export function readReports() {
   if (stored === null) return sampleReports
 
   const parsed = JSON.parse(stored)
-  if (!Array.isArray(parsed) || !parsed.every(validReport)) throw new Error('Format de stockage incorrect')
-  return parsed
+  if (!Array.isArray(parsed) || !parsed.every(validReport)) throw new Error('Invalid report storage format')
+
+  return parsed.map((report) => {
+    const sample = report.sample && sampleReports.find((entry) => entry.id === report.id)
+    if (!sample) return report
+
+    // Use current demo text while keeping locally saved status and history.
+    const { title, description, address } = sample
+    return { ...report, title, description, address }
+  })
 }
 
 export function writeReports(reports) {

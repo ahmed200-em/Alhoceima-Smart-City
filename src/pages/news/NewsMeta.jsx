@@ -1,12 +1,12 @@
 import './NewsMeta.css'
 
-const longDate = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long', timeZone: 'UTC' })
-const shortMonth = new Intl.DateTimeFormat('fr-FR', { month: 'short', timeZone: 'UTC' })
+const longDate = new Intl.DateTimeFormat('en-GB', { dateStyle: 'long', timeZone: 'UTC' })
+const shortMonth = new Intl.DateTimeFormat('en-GB', { month: 'short', timeZone: 'UTC' })
 const cityDate = new Intl.DateTimeFormat('fr-CA', { timeZone: 'Africa/Casablanca', dateStyle: 'short' })
 
 const badgeColors = {
-  Actualité: 'blue', Information: 'teal', Alerte: 'amber',
-  'À venir': 'teal', 'En cours': 'blue', Terminé: 'slate',
+  News: 'blue', Information: 'teal', Alert: 'amber',
+  Upcoming: 'teal', 'In progress': 'blue', Ended: 'slate',
 }
 
 export function NewsBadge({ label }) {
@@ -38,10 +38,6 @@ export function getCityDate() {
 }
 
 export function getEventStatus({ date, endDate }, today = getCityDate()) {
-  if (date > today) return 'À venir'
-  return (endDate || date) < today ? 'Terminé' : 'En cours'
-}
-
-export function formatNewsTime(time) {
-  return time.replace(':', ' h ')
+  if (date > today) return 'Upcoming'
+  return (endDate || date) < today ? 'Ended' : 'In progress'
 }

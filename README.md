@@ -1,66 +1,122 @@
-# SmartRif Al Hoceima
+<p align="center">
+  <img src="public/smartrif-mark.svg" width="72" alt="Logo SmartRif" />
+</p>
 
-Portail citoyen de démonstration en français. Il réunit un annuaire de services, le suivi des signalements et un agenda local. L’interface reprend la maquette fournie, avec la typographie Poppins, la palette bleu et sarcelle et les illustrations de la baie.
+<h1 align="center">SmartRif Al Hoceima</h1>
+
+<p align="center">Portail citoyen de démonstration · Al Hoceima, Maroc</p>
+
+<p align="center">
+  <img alt="React 19" src="https://img.shields.io/badge/React-19-087ea4?style=flat-square&amp;logo=react&amp;logoColor=white" />
+  <img alt="Vite 7" src="https://img.shields.io/badge/Vite-7-635bff?style=flat-square&amp;logo=vite&amp;logoColor=white" />
+  <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-117775?style=flat-square&amp;logo=tailwindcss&amp;logoColor=white" />
+</p>
+
+<p align="center">
+  <strong><a href="http://localhost:5173/">Ouvrir l’aperçu local</a></strong> · <a href="#installation">Installation</a> · <a href="#aperçu">Captures d’écran</a>
+</p>
+
+Le portail réunit un annuaire de services, un parcours de signalement avec suivi et une sélection d’actualités et d’événements d’Al Hoceima. L’aperçu local s’ouvre après le lancement de `npm run dev`.
+
+## Aperçu
+
+![Accueil de SmartRif Al Hoceima avec la baie, les raccourcis vers les services et la météo](docs/screenshots/accueil.webp)
+
+<details>
+<summary>Voir les pages Actualités et Tableau de bord</summary>
+
+### Actualités et événements
+
+![Liste des actualités locales et des événements avec des photos et des filtres](docs/screenshots/actualites.webp)
+
+### Tableau de bord citoyen
+
+![Tableau de bord montrant les compteurs, les filtres et les statuts des signalements de démonstration](docs/screenshots/tableau-de-bord.webp)
+
+</details>
+
+## Fonctionnalités
+
+| Espace | Ce que vous pouvez faire |
+| --- | --- |
+| **Accueil** | Consulter la météo d’Al Hoceima, les indicateurs de démonstration, les dernières annonces et les événements à venir. |
+| **Services** | Rechercher un service, filtrer par catégorie et ouvrir une fiche avec ses horaires et informations pratiques. |
+| **Signalements** | Décrire un problème, joindre une photo facultative, vérifier le récapitulatif et obtenir une référence unique. |
+| **Tableau de bord** | Rechercher et filtrer les signalements par statut, puis ouvrir leur fiche pour consulter l’historique des mises à jour. |
+| **Actualités et événements** | Parcourir les publications locales, les filtrer par type et ouvrir leurs fiches avec les sources et les crédits photo. |
+| **Administration démo** | Simuler la mise à jour d’un statut depuis la route `/administration-demo`. |
 
 ## Installation
 
-Prérequis : Node.js 20.19+ ou 22.12+ et npm.
+**Prérequis** — Node.js 20.19 ou une version ultérieure de la branche 20, ou Node.js 22.12 et versions ultérieures. npm est fourni avec Node.js.
 
 ```bash
+git clone https://github.com/ahmed200-em/Alhoceima-Smart-City.git
+cd Alhoceima-Smart-City
 npm ci
 npm run dev
 ```
 
-Ouvrir [http://localhost:5173](http://localhost:5173). Pour compiler puis prévisualiser le résultat :
+`npm ci` installe les versions enregistrées dans `package-lock.json`, y compris Tailwind CSS. Ouvrez l’adresse indiquée par Vite, généralement [http://localhost:5173](http://localhost:5173).
+
+### Version de production
 
 ```bash
 npm run build
 npm run preview
 ```
 
-Le build génère le dossier `dist/`. Sur un hébergement statique, configurer le renvoi des routes de l’application vers `index.html` pour permettre l’ouverture directe d’une fiche.
+Le build génère `dist/`. Un hébergement statique doit renvoyer les routes de l’application vers `index.html` pour permettre l’ouverture directe et l’actualisation d’une fiche.
 
-## Parcours
+## Tester le suivi d’un signalement
 
-| Page | Fonction |
-| --- | --- |
-| Accueil | Indicateurs de démonstration, météo d’Al Hoceima, accès rapides, dernières annonces et agenda |
-| Services | Recherche par mot-clé, filtres par catégorie et fiches avec horaires et informations pratiques |
-| Signaler un problème | Formulaire avec validation, photo facultative, récapitulatif et référence unique après enregistrement |
-| Mon tableau de bord | Compteurs, recherche et filtres En attente, En cours et Résolu. Chaque fiche affiche son historique et sa progression |
-| Actualités et événements | Recherche, filtres par type et fiches des annonces et des événements |
-| Administration démo | Mise à jour du statut d’un signalement depuis une vue accessible par son adresse directe |
+1. Ouvrez **Signaler un problème** et saisissez un exemple. Passez à l’étape de confirmation, puis soumettez le formulaire.
+2. Notez la référence obtenue. Dans **Mon tableau de bord**, ouvrez la fiche et constatez le statut **En attente**.
+3. Dans le même navigateur et sur le même site, ouvrez `/administration-demo`. Recherchez la référence, sélectionnez **En cours** et enregistrez.
+4. Revenez à la fiche depuis le tableau de bord pour voir le nouveau statut et son horodatage. Répétez l’opération avec **Résolu** pour tester la fin du parcours.
 
-Pour essayer le suivi, créer un signalement, noter sa référence et ouvrir la fiche. Ouvrir **Administration démo** par son adresse directe, choisir **En cours** puis enregistrer. Revenir à la fiche pour retrouver la mise à jour et son horodatage. Les exemples inclus permettent également d’explorer les trois statuts dès le premier lancement.
+Des exemples permettent aussi de consulter les trois statuts dès le premier lancement.
 
-## Organisation du code
+## Architecture
+
+L’interface utilise **React 19** en JavaScript et JSX, **Vite 7** pour le développement et la compilation, **React Router 7** pour la navigation et **Tailwind CSS 4** pour la mise en page et les styles partagés. Les feuilles CSS propres à chaque interface sont placées à côté des fichiers JSX.
 
 ```text
 src/
-  components/   Éléments partagés, dont la marque et la carte météo
-  context/      État des signalements partagé entre les pages
-  data/         Services, annonces, événements et signalements fictifs
-  hooks/        Gestion des états de la requête météo
-  layouts/      Navigation, contenu principal et pied de page
-  pages/        Accueil, annuaire, actualités, signalements et page 404
-  services/     Appels HTTP et lecture/écriture dans localStorage
-  utils/        Formatage et traitement des photos de signalement
-  styles.css    Thème Tailwind, styles de base et styles réutilisables
-public/         Logo et illustrations fournies pour le projet
+├── App.jsx          Routes et chargement des pages à la demande
+├── components/      Marque, pied de page, météo et états de chargement
+├── context/         Signalements et actions de mise à jour
+├── data/            Services d’exemple, signalements et publications
+├── hooks/           Requête météo et animations au défilement
+├── layouts/         Navigation et cadre commun aux pages
+├── pages/           Accueil, services, actualités, signalements et page 404
+├── services/        Appel météo et accès au stockage du navigateur
+├── utils/           Formatage et traitement des photos
+└── styles.css      Thème Tailwind, styles de base et boutons partagés
+public/             Logo et images du portail
+docs/screenshots/   Captures présentées dans ce fichier
 ```
 
-React et JSX composent les écrans. React Router rend les fiches accessibles par URL et conserve les filtres pris en charge dans l’adresse. Tailwind CSS gère la mise en page responsive et les styles partagés.
+| Pour modifier… | Ouvrez… |
+| --- | --- |
+| La navigation | [`src/layouts/AppLayout.jsx`](src/layouts/AppLayout.jsx) et [`AppLayout.css`](src/layouts/AppLayout.css) |
+| L’accueil | [`src/pages/Home.jsx`](src/pages/Home.jsx) et [`Home.css`](src/pages/Home.css) |
+| Le pied de page | [`src/components/Footer.jsx`](src/components/Footer.jsx) et [`Footer.css`](src/components/Footer.css) |
+| L’annuaire des services | [`src/data/services.js`](src/data/services.js) |
+| Les actualités et les événements | [`src/data/news.js`](src/data/news.js) |
 
-Chaque page et composant visuel importe une feuille CSS du même nom, placée à côté de son fichier JSX. Par exemple, modifiez les liens de navigation dans `src/layouts/AppLayout.jsx` et leur apparence dans `src/layouts/AppLayout.css`. Les styles des contrôles partagés entre les écrans de signalement se trouvent dans `src/pages/reports/ReportUI.css`.
+Les cartes d’attente, les animations au défilement et les transitions prennent en compte la préférence du système pour la réduction des animations.
 
-Les liens du pied de page se modifient dans `src/components/Footer.jsx` et son apparence dans `src/components/Footer.css`.
+## Sources et données
 
-## Météo et données locales
+- **Météo.** L’accueil utilise Fetch API pour interroger Open-Meteo aux coordonnées d’Al Hoceima, dans le fuseau `Africa/Casablanca`. La requête sans clé expire après huit secondes. En cas d’échec, la carte permet de réessayer. [Documentation Open-Meteo](https://open-meteo.com/en/docs)
+- **Actualités et événements.** La sélection est mise à jour manuellement dans le code. Chaque fiche indique sa source et les crédits de sa photo. Les dates des événements sont interprétées dans le fuseau d’Al Hoceima.
+- **Services et indicateurs.** Les informations de l’annuaire et les chiffres de l’accueil sont fournis à titre de démonstration. L’illustration de la baie sur l’accueil a été générée pour le projet.
 
-L’accueil utilise Fetch API pour interroger la [Weather Forecast API d’Open-Meteo](https://open-meteo.com/en/docs) aux coordonnées d’Al Hoceima, dans le fuseau `Africa/Casablanca`. Il demande la température, le code météo et l’indicateur jour/nuit. La carte affiche le chargement, la réponse ou un bouton **Réessayer** après un échec. L’appel expire après huit secondes et ne requiert aucune clé pour cette démonstration.
+## Confidentialité et limites de la démo
 
-Les horaires, chiffres, annonces, événements, références et coordonnées des services sont des exemples fictifs. Les images générées fournies avec le projet illustrent les pages.
+Les signalements, photos jointes et historiques restent dans le navigateur, dans `localStorage` sous la clé `smartcity-al-hoceima-reports-v1`. Le site fonctionne sans compte partagé ni connexion à un système municipal.
 
-Les signalements et leurs changements de statut sont enregistrés dans `localStorage` sous la clé `smartcity-al-hoceima-reports-v1`. Les nouveaux signalements commencent **En attente**. Les photos sont vérifiées et redimensionnées avant l’enregistrement. Un message permet de retirer la photo et de réessayer si l’espace disponible est insuffisant.
+Les photos JPG, PNG et WebP sont vérifiées et redimensionnées avant l’enregistrement, avec une limite de 10 Mo pour le fichier d’origine. Si le navigateur manque d’espace, le formulaire propose d’enregistrer sans photo. Effacer les données du site supprime les saisies locales et rétablit les exemples au prochain chargement.
 
-La démonstration fonctionne dans le navigateur et sur l’origine utilisés pour l’ouvrir. Elle est sans comptes partagés, sans serveur municipal et sans transmission réelle des signalements. L’administration démo est ouverte pour permettre le test du parcours. Effacer les données du site réinitialise les signalements à leurs valeurs d’exemple.
+L’administration démo est ouverte pour présenter le parcours. Utilisez des informations fictives lorsque vous testez le formulaire.

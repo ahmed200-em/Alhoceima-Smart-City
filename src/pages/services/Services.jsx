@@ -75,9 +75,9 @@ export default function Services() {
       </p>
 
       {results.length > 0 ? (
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
           {results.map((service) => (
-            <li key={service.slug}>
+            <li key={service.slug} data-reveal>
               <Link className="panel svc-card" to={`/services/${service.slug}`} aria-labelledby={`service-${service.slug}`}>
                 <ServiceIcon icon={service.icon} color={service.color} />
                 <h2 id={`service-${service.slug}`}>{service.title}</h2>

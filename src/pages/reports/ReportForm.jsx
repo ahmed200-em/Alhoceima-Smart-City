@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowLeft, ArrowRight, Check, CheckCircle2, ImagePlus, MapPin, Send, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, CheckCircle2, ImagePlus, LoaderCircle, MapPin, Send, X } from 'lucide-react'
 import { Link, useSearchParams } from 'react-router-dom'
+import LoadingPlaceholder from '../../components/LoadingPlaceholder.jsx'
 import { useReports } from '../../context/ReportsContext'
 import { reportCategories } from '../../data/reports'
 import { reportCategoryLabel } from '../../utils/reportFormat'
@@ -177,7 +178,9 @@ export default function ReportForm() {
               <div className="report-field">
                 <span className="report-field-label" id="report-photo-label">Photo (facultatif)</span>
                 <div className="report-upload">
-                  {photo && <img className="report-photo-preview" src={photo} alt="Aperçu de la photo jointe" />}
+                  {photoState.loading ? <LoadingPlaceholder className="report-photo-preview" /> : (
+                    photo && <img className="report-photo-preview" src={photo} alt="Aperçu de la photo jointe" />
+                  )}
                   <div className="grid gap-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <label className="button button-secondary report-photo-picker" htmlFor="report-photo">
@@ -228,8 +231,12 @@ export default function ReportForm() {
               <div className="report-form-actions flex-wrap">
                 <button className="button button-secondary" type="button" disabled={saving} onClick={() => { setSubmitError(null); setStep(0) }}><ArrowLeft size={16} aria-hidden="true" /> Retour</button>
                 {submitError?.photoTooLarge && <button className="button button-secondary" type="button" disabled={saving} onClick={() => saveReport(false)}>Enregistrer sans photo</button>}
-                <button className="button button-primary" type="submit" disabled={saving}>{saving ? 'Enregistrement…' : 'Soumettre le signalement'} <Send size={16} aria-hidden="true" /></button>
+                <button className="button button-primary" type="submit" disabled={saving}>
+                  {saving ? 'Enregistrement…' : 'Soumettre le signalement'}
+                  {saving ? <LoaderCircle className="motion-safe:animate-spin" size={16} aria-hidden="true" /> : <Send size={16} aria-hidden="true" />}
+                </button>
               </div>
+              <p className="sr-only" role="status">{saving && 'Enregistrement du signalement…'}</p>
             </form>
           )}
 
@@ -248,7 +255,7 @@ export default function ReportForm() {
           )}
         </section>
 
-        <aside className="panel report-form-aside grid gap-4">
+        <aside className="panel report-form-aside grid gap-4" data-reveal>
           <div className="report-help-icon"><MapPin size={21} aria-hidden="true" /></div>
           <h2>Précisez le lieu du problème</h2>
           <p className="muted">Le nom de la rue ou un point de repère aide à comprendre où se situe le problème.</p>

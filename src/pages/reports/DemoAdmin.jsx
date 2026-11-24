@@ -1,4 +1,4 @@
-import { CheckCircle2, ClipboardCheck, ShieldCheck } from 'lucide-react'
+import { CheckCircle2, ClipboardCheck, LoaderCircle, ShieldCheck } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useReports } from '../../context/ReportsContext'
@@ -30,7 +30,7 @@ function AdminReport({ report, onSave }) {
   }
 
   return (
-    <li className="report-admin-item grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,auto)] lg:items-center">
+    <li className="report-admin-item grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,auto)] lg:items-center" data-reveal>
       <div>
         <div className="flex flex-wrap items-center gap-2">
           <span className="report-reference">{report.id}</span>
@@ -53,8 +53,12 @@ function AdminReport({ report, onSave }) {
           >
             {reportStatuses.map((entry) => <option key={entry.value} value={entry.value}>{entry.label}</option>)}
           </select>
-          <button className="button button-primary" type="submit" disabled={saving || chosen === report.status}>{saving ? 'Enregistrement…' : 'Enregistrer'}</button>
+          <button className="button button-primary" type="submit" disabled={saving || chosen === report.status}>
+            {saving ? 'Enregistrement…' : 'Enregistrer'}
+            {saving && <LoaderCircle className="motion-safe:animate-spin" size={16} aria-hidden="true" />}
+          </button>
         </div>
+        <p className="sr-only" role="status">{saving && 'Enregistrement du nouveau statut…'}</p>
         {error && <p className="report-field-error" role="alert">{error}</p>}
       </form>
     </li>
@@ -95,7 +99,7 @@ export default function DemoAdmin() {
         <h2 className="flex items-center gap-2" id="admin-reports-title"><ClipboardCheck size={20} aria-hidden="true" /> Gestion des signalements</h2>
         <ReportFilters search={search} onSearch={setSearch} status={status} onStatus={setStatus} />
         {filtered.length ? (
-          <ul className="report-admin-list">{filtered.map((report) => <AdminReport key={report.id} report={report} onSave={saveStatus} />)}</ul>
+          <ul className="report-admin-list" data-reveal-group>{filtered.map((report) => <AdminReport key={report.id} report={report} onSave={saveStatus} />)}</ul>
         ) : <NoReports hasReports={reports.length > 0} clearFilters={() => { setSearch(''); setStatus('all') }} />}
       </section>
 

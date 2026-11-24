@@ -30,6 +30,16 @@
   font-size: 12px;
   color: var(--color-civic-muted);
 }
+.weather-loading {
+  display: flex;
+  align-items: center;
+  min-height: 1lh;
+}
+.weather-loading-line {
+  width: 92px;
+  height: 10px;
+  border-radius: 4px;
+}
 .weather-detail strong {
   color: var(--color-navy);
   font-weight: 600;

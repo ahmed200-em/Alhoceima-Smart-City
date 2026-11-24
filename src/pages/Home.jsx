@@ -63,7 +63,7 @@ export default function Home() {
       </section>
 
       <div className="page-shell home-content">
-        <section aria-label="La ville en chiffres, données de démonstration">
+        <section aria-label="La ville en chiffres, données de démonstration" data-reveal>
           <ul className="home-stats panel">
             {statistics.map(({ value, label, icon: Icon }) => (
               <li className="stat-item" key={label}>
@@ -83,11 +83,11 @@ export default function Home() {
             <h2 id="acces-rapides">Accès rapides</h2>
             <Link to="/services" className="text-link">Tous les services <ArrowRight size={15} aria-hidden="true" /></Link>
           </div>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4" data-reveal-group>
             {quickLinks.map(({ id, title, description, icon: Icon, color }) => {
               const service = services.find((item) => item.category === id)
               return (
-                <Link to={service ? `/services/${service.slug}` : '/services'} key={id} className="quick-card panel">
+                <Link to={service ? `/services/${service.slug}` : '/services'} key={id} className="quick-card panel" data-reveal>
                   <span className={`icon-tile icon-${color}`}><Icon size={24} strokeWidth={1.8} aria-hidden="true" /></span>
                   <ChevronRight className="quick-arrow" size={17} aria-hidden="true" />
                   <strong>{title}</strong>
@@ -98,8 +98,8 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="home-updates grid gap-6 lg:grid-cols-[1.45fr_1fr] lg:gap-5">
-          <section aria-labelledby="dernieres-annonces">
+        <div className="home-updates grid gap-6 lg:grid-cols-[1.45fr_1fr] lg:gap-5" data-reveal-group>
+          <section aria-labelledby="dernieres-annonces" data-reveal>
             <div className="home-section-heading"><h2 id="dernieres-annonces">Dernières annonces</h2></div>
             <div className="panel home-feed">
               <ul>
@@ -123,7 +123,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section aria-labelledby="evenements-a-venir">
+          <section aria-labelledby="evenements-a-venir" data-reveal>
             <div className="home-section-heading"><h2 id="evenements-a-venir">Événements à venir</h2></div>
             <div className="panel home-feed">
               <ul>
@@ -149,7 +149,7 @@ export default function Home() {
           </section>
         </div>
 
-        <section className="workflow-panel panel" aria-labelledby="comment-ca-marche">
+        <section className="workflow-panel panel" aria-labelledby="comment-ca-marche" data-reveal>
           <h2 id="comment-ca-marche">Comment ça marche ?</h2>
           <ol className="grid gap-3 md:grid-cols-3">
             {workflow.map(({ to, title, description, icon: Icon, color }) => (

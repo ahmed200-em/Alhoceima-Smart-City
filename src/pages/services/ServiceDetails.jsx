@@ -56,8 +56,8 @@ export default function ServiceDetails() {
 
       <p className="svc-sample-note"><Info size={17} aria-hidden="true" /> Les horaires et zones desservies sont des exemples pour la démonstration.</p>
 
-      <div className="grid items-start gap-5 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-        <section className="panel svc-detail-panel" aria-labelledby="service-pratique">
+      <div className="grid items-start gap-5 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]" data-reveal-group>
+        <section className="panel svc-detail-panel" aria-labelledby="service-pratique" data-reveal>
           <h2 id="service-pratique">À savoir</h2>
           <dl>
             {practicalDetails.map(({ icon: Icon, label, text }) => (
@@ -69,7 +69,7 @@ export default function ServiceDetails() {
           </dl>
         </section>
 
-        <section className="panel svc-detail-panel" aria-labelledby="service-info">
+        <section className="panel svc-detail-panel" aria-labelledby="service-info" data-reveal>
           <h2 id="service-info">Informations utiles</h2>
           <ul>
             {service.information.map(({ title, text }) => (
@@ -83,7 +83,7 @@ export default function ServiceDetails() {
       </div>
 
       {related.length > 0 && (
-        <section className="mt-7" aria-labelledby="service-annonces">
+        <section className="mt-7" aria-labelledby="service-annonces" data-reveal>
           <h2 className="svc-section-title" id="service-annonces">Annonces liées</h2>
           <ul className="panel svc-related">
             {related.map((item) => (

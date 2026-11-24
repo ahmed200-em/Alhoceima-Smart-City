@@ -1,15 +1,22 @@
-import { Route, Routes } from "react-router-dom";
-import AppLayout from "./layouts/AppLayout.jsx";
-import Home from "./pages/Home.jsx";
-import NotFound from "./pages/NotFound.jsx";
-import Services from "./pages/services/Services.jsx";
-import ServiceDetails from "./pages/services/ServiceDetails.jsx";
-import ReportForm from "./pages/reports/ReportForm.jsx";
-import Dashboard from "./pages/reports/Dashboard.jsx";
-import ReportDetails from "./pages/reports/ReportDetails.jsx";
-import DemoAdmin from "./pages/reports/DemoAdmin.jsx";
-import News from "./pages/news/News.jsx";
-import NewsDetails from "./pages/news/NewsDetails.jsx";
+import { lazy } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { PageLoadError } from './components/PageLoadState.jsx'
+import AppLayout from './layouts/AppLayout.jsx'
+
+function loadPage(importPage) {
+  return lazy(() => importPage().catch(() => ({ default: PageLoadError })))
+}
+
+const Home = loadPage(() => import('./pages/Home.jsx'))
+const NotFound = loadPage(() => import('./pages/NotFound.jsx'))
+const Services = loadPage(() => import('./pages/services/Services.jsx'))
+const ServiceDetails = loadPage(() => import('./pages/services/ServiceDetails.jsx'))
+const ReportForm = loadPage(() => import('./pages/reports/ReportForm.jsx'))
+const Dashboard = loadPage(() => import('./pages/reports/Dashboard.jsx'))
+const ReportDetails = loadPage(() => import('./pages/reports/ReportDetails.jsx'))
+const DemoAdmin = loadPage(() => import('./pages/reports/DemoAdmin.jsx'))
+const News = loadPage(() => import('./pages/news/News.jsx'))
+const NewsDetails = loadPage(() => import('./pages/news/NewsDetails.jsx'))
 
 export default function App() {
   return (
@@ -27,5 +34,5 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
-  );
+  )
 }

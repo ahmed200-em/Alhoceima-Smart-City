@@ -52,7 +52,7 @@ export default function NewsDetails() {
 
         <img className="news-article-image" src={item.image} alt={item.imageAlt} width="1200" height="490" />
 
-        <div className="news-article-body">
+        <div className="news-article-body" data-reveal>
           <p className="news-note"><Info size={17} aria-hidden="true" /> Publication fictive et image d’illustration.</p>
           {item.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </div>

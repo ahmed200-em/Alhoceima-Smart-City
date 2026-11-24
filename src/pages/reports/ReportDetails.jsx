@@ -10,7 +10,7 @@ function ReportTimeline({ report }) {
   const currentIndex = reportStatuses.findIndex((entry) => entry.value === report.status)
 
   return (
-    <section className="panel report-detail-panel" aria-labelledby="report-progress-title">
+    <section className="panel report-detail-panel" aria-labelledby="report-progress-title" data-reveal>
       <h2 id="report-progress-title">Suivi du signalement</h2>
       <ol className="report-timeline">
         {reportStatuses.map((entry, index) => {
@@ -72,8 +72,8 @@ export default function ReportDetails() {
 
       {report.sample && <LocalNotice>Signalement d’exemple utilisé pour démontrer le suivi.</LocalNotice>}
 
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_22rem]">
-        <section className="panel report-detail-panel" aria-labelledby="report-description-title">
+      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_22rem]" data-reveal-group>
+        <section className="panel report-detail-panel" aria-labelledby="report-description-title" data-reveal>
           <div className="flex flex-wrap items-center gap-2">
             <span className="report-category-tag">{reportCategoryLabel(report.category)}</span>
             <p className="report-help">Soumis le <time dateTime={report.createdAt}>{formatReportDate(report.createdAt, true)}</time></p>
@@ -86,7 +86,7 @@ export default function ReportDetails() {
         <ReportTimeline report={report} />
       </div>
 
-      <section className="panel report-detail-panel" aria-labelledby="report-updates-title">
+      <section className="panel report-detail-panel" aria-labelledby="report-updates-title" data-reveal>
         <h2 id="report-updates-title">Mises à jour</h2>
         <ul className="report-updates">
           {[...report.history].reverse().map((update, index) => (

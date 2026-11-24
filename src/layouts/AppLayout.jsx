@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { LayoutDashboard, Menu, X } from 'lucide-react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import Brand from '../components/Brand.jsx'
 import Footer from '../components/Footer.jsx'
+import { PageLoading } from '../components/PageLoadState.jsx'
+import { useScrollReveal } from '../hooks/useScrollReveal.js'
 import './AppLayout.css'
 
 const navigation = [
@@ -24,6 +26,7 @@ const pageTitles = {
 export default function AppLayout() {
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const siteRef = useRef(null)
   const toggleRef = useRef(null)
   const mainRef = useRef(null)
   const previousPath = useRef(pathname)
@@ -42,6 +45,8 @@ export default function AppLayout() {
     }
   }, [pathname])
 
+  useScrollReveal(siteRef, pathname)
+
   function closeMenu(event) {
     if (menuOpen && event.key === 'Escape') {
       setMenuOpen(false)
@@ -50,7 +55,7 @@ export default function AppLayout() {
   }
 
   return (
-    <div className="site">
+    <div className="site" ref={siteRef}>
       <a className="skip-link" href="#contenu">Aller au contenu</a>
       <header className="site-header" onKeyDown={closeMenu}>
         <div className="header-inner">
@@ -88,7 +93,9 @@ export default function AppLayout() {
         </div>
       </header>
       <main id="contenu" ref={mainRef} tabIndex={-1}>
-        <Outlet />
+        <Suspense key={pathname} fallback={<PageLoading />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </div>

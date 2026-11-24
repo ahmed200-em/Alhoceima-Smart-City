@@ -22,9 +22,9 @@ const statusParams = new Map([
 
 function ReportSummary({ reports }) {
   return (
-    <dl className="report-summary grid grid-cols-2 gap-3 md:grid-cols-4">
+    <dl className="report-summary grid grid-cols-2 gap-3 md:grid-cols-4" data-reveal-group>
       {summary.map(({ label, status, icon: Icon }) => (
-        <div className={`panel report-summary-stat report-summary-stat--${status}`} key={status}>
+        <div className={`panel report-summary-stat report-summary-stat--${status}`} key={status} data-reveal>
           <dt><Icon size={17} aria-hidden="true" /> {label}</dt>
           <dd>{status === 'all' ? reports.length : reports.filter((report) => report.status === status).length}</dd>
         </div>
@@ -36,7 +36,7 @@ function ReportSummary({ reports }) {
 function ReportsTable({ reports }) {
   return (
     <>
-      <table className="report-table">
+      <table className="report-table" data-reveal>
         <caption className="sr-only">Signalements et état de leur traitement</caption>
         <thead>
           <tr>
@@ -62,9 +62,9 @@ function ReportsTable({ reports }) {
         </tbody>
       </table>
 
-      <ul className="report-mobile-list">
+      <ul className="report-mobile-list" data-reveal-group>
         {reports.map((report) => (
-          <li key={report.id}>
+          <li key={report.id} data-reveal>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <span className="report-reference">{report.id}</span>
               <StatusBadge status={report.status} />

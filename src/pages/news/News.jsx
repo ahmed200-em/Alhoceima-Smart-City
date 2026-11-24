@@ -126,8 +126,8 @@ export default function News() {
       {sections.map(({ id, title, icon: Icon, entries }) => (
         <section className="news-section" aria-labelledby={`news-section-${id}`} key={id}>
           <h2 id={`news-section-${id}`}><Icon size={20} aria-hidden="true" /> {title}</h2>
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {entries.map((item) => <li key={item.slug}><NewsCard item={item} /></li>)}
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+            {entries.map((item) => <li key={item.slug} data-reveal><NewsCard item={item} /></li>)}
           </ul>
         </section>
       ))}

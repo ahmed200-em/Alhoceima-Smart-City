@@ -41,8 +41,8 @@ export default function Footer() {
   return (
     <footer className="site-footer" onClickCapture={scrollToCurrentPage}>
       <div className="page-shell">
-        <div className="footer-content">
-          <div className="footer-brand">
+        <div className="footer-content" data-reveal-group>
+          <div className="footer-brand" data-reveal>
             <Brand inverse />
             <p>Portail de démonstration des services municipaux d’Al Hoceima.</p>
             <Link className="button button-teal" to="/signaler">
@@ -50,7 +50,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          <nav className="footer-nav" aria-label="Navigation du pied de page">
+          <nav className="footer-nav" aria-label="Navigation du pied de page" data-reveal>
             {linkGroups.map(({ id, title, links }) => (
               <section key={id} aria-labelledby={`footer-${id}`}>
                 <h2 id={`footer-${id}`}>{title}</h2>

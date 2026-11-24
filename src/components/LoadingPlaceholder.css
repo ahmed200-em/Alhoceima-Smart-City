@@ -1,0 +1,24 @@
+.loading-card-placeholder {
+  position: relative;
+  display: block;
+  flex: none;
+  overflow: hidden;
+  background-color: #e5edf6;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loading-card-placeholder::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background: linear-gradient(90deg, transparent, #ffffffb3, transparent);
+    transform: translateX(-100%);
+    animation: loading-card-shimmer 1.45s linear 3;
+  }
+
+  @keyframes loading-card-shimmer {
+    to {
+      transform: translateX(100%);
+    }
+  }
+}

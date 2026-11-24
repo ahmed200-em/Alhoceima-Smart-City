@@ -3,3 +3,6 @@ dist/
 .vite/
 .taste-skill/
 *.local
+
+.vercel
+.env*

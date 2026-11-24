@@ -26,6 +26,7 @@ const pageTitles = {
 export default function AppLayout() {
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [headerFloating, setHeaderFloating] = useState(false)
   const siteRef = useRef(null)
   const toggleRef = useRef(null)
   const mainRef = useRef(null)
@@ -45,19 +46,34 @@ export default function AppLayout() {
     }
   }, [pathname])
 
+  useEffect(() => {
+    let wasFloating = false
+
+    function updateHeader() {
+      const isFloating = window.scrollY > 32
+      if (wasFloating === isFloating) return
+      wasFloating = isFloating
+      setHeaderFloating(isFloating)
+    }
+
+    updateHeader()
+    window.addEventListener('scroll', updateHeader, { passive: true })
+    return () => window.removeEventListener('scroll', updateHeader)
+  }, [])
+
   useScrollReveal(siteRef, pathname)
 
   function closeMenu(event) {
     if (menuOpen && event.key === 'Escape') {
       setMenuOpen(false)
-      toggleRef.current?.focus()
+      toggleRef.current?.focus({ preventScroll: true })
     }
   }
 
   return (
     <div className="site" ref={siteRef}>
       <a className="skip-link" href="#contenu">Aller au contenu</a>
-      <header className="site-header" onKeyDown={closeMenu}>
+      <header className={`site-header${headerFloating ? ' is-floating' : ''}`} onKeyDown={closeMenu}>
         <div className="header-inner">
           <Brand />
           <button

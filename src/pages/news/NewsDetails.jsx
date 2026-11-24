@@ -1,7 +1,7 @@
-import { ArrowLeft, CalendarDays, ChevronRight, Clock3, Info, MapPin, SearchX } from 'lucide-react'
+import { ArrowLeft, CalendarDays, ChevronRight, Clock3, MapPin, SearchX } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { announcements, events } from '../../data/news.js'
-import { formatNewsDate, formatNewsTime, NewsBadge } from './NewsMeta.jsx'
+import { formatEventDates, formatNewsDate, formatNewsTime, getEventStatus, NewsBadge } from './NewsMeta.jsx'
 import './NewsDetails.css'
 
 export default function NewsDetails() {
@@ -37,24 +37,37 @@ export default function NewsDetails() {
       <article className="panel news-article">
         <header className="news-article-header">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <NewsBadge label={item.label} />
-            <p className="news-article-date"><CalendarDays size={16} aria-hidden="true" /> <time dateTime={item.date}>{formatNewsDate(item.date)}</time></p>
+            <NewsBadge label={isEvent ? getEventStatus(item) : item.label} />
+            <p className="news-article-date">
+              <CalendarDays size={16} aria-hidden="true" />
+              {isEvent ? <span>{formatEventDates(item)}</span> : <time dateTime={item.date}>{formatNewsDate(item.date)}</time>}
+            </p>
           </div>
           <h1 className="page-title mt-3">{item.title}</h1>
           <p className="muted mt-3">{item.summary}</p>
           {isEvent && (
             <ul className="news-logistics flex flex-wrap gap-x-5 gap-y-2">
-              <li><Clock3 size={17} aria-hidden="true" /> <time dateTime={item.time}>{formatNewsTime(item.time)}</time></li>
+              {item.time && <li><Clock3 size={17} aria-hidden="true" /> <time dateTime={item.time}>{formatNewsTime(item.time)}</time></li>}
               <li><MapPin size={17} aria-hidden="true" /> {item.location}</li>
             </ul>
           )}
         </header>
 
-        <img className="news-article-image" src={item.image} alt={item.imageAlt} width="1200" height="490" />
+        <img className="news-article-image" src={item.image} alt={item.imageAlt} style={{ objectPosition: item.imagePosition }} width="1200" height="490" />
 
         <div className="news-article-body" data-reveal>
-          <p className="news-note"><Info size={17} aria-hidden="true" /> Publication fictive et image d’illustration.</p>
           {item.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          <dl className="news-article-credits">
+            <div>
+              <dt>Source de la publication</dt>
+              <dd><a href={item.source.url}>{item.source.label}</a></dd>
+            </div>
+            <div>
+              <dt>{item.photo.illustrative ? 'Photo d’illustration' : 'Photographie'}</dt>
+              <dd>{item.photo.subject}</dd>
+              <dd><a href={item.photo.url}>{item.photo.author} · {item.photo.provider || 'Wikimedia Commons'}</a> · <a href={item.photo.licenseUrl}>{item.photo.license}</a> · Image redimensionnée</dd>
+            </div>
+          </dl>
         </div>
       </article>
 

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import WeatherCard from '../components/WeatherCard.jsx'
 import { services } from '../data/services.js'
 import { announcements, events } from '../data/news.js'
+import { formatEventDates, getCityDate } from './news/NewsMeta.jsx'
 import './Home.css'
 
 const quickLinks = [
@@ -23,20 +24,20 @@ const workflow = [
 
 const fullDate = new Intl.DateTimeFormat('fr-MA', { day: 'numeric', month: 'short', year: 'numeric' })
 const monthOnly = new Intl.DateTimeFormat('fr-FR', { month: 'short' })
-const cityDate = new Intl.DateTimeFormat('fr-CA', { timeZone: 'Africa/Casablanca', dateStyle: 'short' })
 
 function dateAtNoon(date) {
   return new Date(`${date}T12:00:00`)
 }
 
 export default function Home() {
-  const today = cityDate.format(new Date())
-  const upcomingEvents = events.filter(({ date }) => date >= today).slice(0, 3)
+  const today = getCityDate()
+  const upcomingEvents = events.filter(({ date, endDate }) => (endDate || date) >= today)
+    .sort((left, right) => left.date.localeCompare(right.date))
   const statistics = [
     { value: '4 800', label: 'Signalements traités', icon: ClipboardList },
     { value: '98 %', label: 'Taux de résolution', icon: CheckCircle2 },
     { value: services.length, label: 'Services disponibles', icon: LayoutGrid },
-    { value: events.length, label: 'Événements à l’agenda', icon: CalendarDays },
+    { value: upcomingEvents.length, label: 'Événements à l’agenda', icon: CalendarDays },
   ]
 
   return (
@@ -127,7 +128,7 @@ export default function Home() {
             <div className="home-section-heading"><h2 id="evenements-a-venir">Événements à venir</h2></div>
             <div className="panel home-feed">
               <ul>
-                {upcomingEvents.map(({ slug, title, date, location, time }) => (
+                {upcomingEvents.slice(0, 3).map(({ slug, title, date, endDate, location }) => (
                   <li key={slug}>
                     <Link className="feed-row event-row" to={`/actualites/${slug}`}>
                       <time className="event-date" dateTime={date}>
@@ -136,14 +137,14 @@ export default function Home() {
                       </time>
                       <div className="min-w-0">
                         <p className="feed-title">{title}</p>
-                        <p className="event-location"><MapPin size={13} aria-hidden="true" /> {time} · {location}</p>
+                        <p className="event-location"><MapPin size={13} aria-hidden="true" /> {formatEventDates({ date, endDate })} · {location}</p>
                       </div>
                       <ChevronRight className="feed-arrow" size={17} aria-hidden="true" />
                     </Link>
                   </li>
                 ))}
               </ul>
-              {upcomingEvents.length === 0 && <p className="muted px-4 py-5 text-sm">Aucun événement à venir dans l’agenda de démonstration.</p>}
+              {upcomingEvents.length === 0 && <p className="muted px-4 py-5 text-sm">Aucun événement à venir dans la sélection actuelle.</p>}
               <Link to="/actualites?type=evenements" className="text-link feed-all">Voir tous les événements <ArrowRight size={15} aria-hidden="true" /></Link>
             </div>
           </section>

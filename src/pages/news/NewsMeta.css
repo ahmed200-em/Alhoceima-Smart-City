@@ -24,6 +24,12 @@
   background: #fff5e4;
 }
 
+.news-badge--slate {
+  border-color: #dbe4ec;
+  color: #415268;
+  background: #f1f4f8;
+}
+
 .news-date-tile {
   position: absolute;
   top: .75rem;

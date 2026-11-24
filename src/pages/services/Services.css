@@ -57,9 +57,6 @@
   cursor: pointer;
 }
 
-.svc-reset:hover {
-  text-decoration: underline;
-}
 
 .svc-result-count {
   margin: 1.25rem 0 .75rem;
@@ -118,7 +115,6 @@
 }
 
 .svc-card:hover .svc-card-link {
-  text-decoration: underline;
   text-underline-offset: 3px;
 }
 

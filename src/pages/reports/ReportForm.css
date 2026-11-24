@@ -30,7 +30,7 @@
 
 .report-steps li {
   display: flex;
-  flex: 1 1 0;
+  flex: 1 1 auto;
   align-items: center;
   gap: 9px;
   color: var(--report-muted);
@@ -49,6 +49,7 @@
 
 .report-steps li:last-child {
   flex: 0 0 auto;
+  width: 100px;
 }
 
 .report-step-index {

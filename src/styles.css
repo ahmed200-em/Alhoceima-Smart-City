@@ -100,7 +100,7 @@
     text-underline-offset: 3px;
   }
   .text-link:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }
   .text-link svg,
   .button svg {

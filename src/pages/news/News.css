@@ -158,10 +158,6 @@
   font-weight: 650;
 }
 
-.news-card:hover .news-card-link {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
 
 .news-empty {
   display: grid;

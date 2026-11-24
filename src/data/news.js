@@ -7,7 +7,7 @@ export const announcements = [
     title: 'Nouveau plan de mobilité durable pour Al Hoceima',
     summary: 'Un projet propose de rapprocher les arrêts de bus des quartiers et de faciliter les trajets vers le centre-ville.',
     date: '2026-11-16',
-    image: '/images/city-bay.jpg',
+    image: '/images/mobilité-durable-pour-AlHoceima.webp',
     imageAlt: 'Vue sur les quartiers d’Al Hoceima et la baie',
     body: [
       'Dans ce scénario, le projet relie les quartiers résidentiels au centre-ville, au port et aux principaux équipements publics. Il prévoit des correspondances plus simples et des arrêts mieux signalés.',
@@ -22,7 +22,7 @@ export const announcements = [
     title: 'Travaux de voirie au boulevard Tarik Ibn Ziyad',
     summary: 'Le scénario prévoit une circulation alternée pendant la réfection d’un tronçon du boulevard.',
     date: '2026-11-12',
-    image: '/images/harbor.jpg',
+    image: '/images/Travaux-de-voirie-au-boulevard-TarikIbnZiyad.webp',
     imageAlt: 'Falaises rocheuses et bateaux de pêche au port',
     body: [
       'Cette annonce illustre la réfection d’une partie de la chaussée et la reprise des passages piétons. Une voie resterait ouverte pendant les travaux.',
@@ -37,7 +37,7 @@ export const announcements = [
     title: 'Coupure d’eau programmée à Hay Al Matar',
     summary: 'Exemple d’avis de maintenance du réseau avec une plage de coupure et un secteur concerné.',
     date: '2026-11-08',
-    image: '/images/coast.jpg',
+    image: '/images/Coupure-d’eau-programmée.webp',
     imageAlt: 'Côte méditerranéenne près d’Al Hoceima',
     body: [
       'Dans cet exemple, une intervention sur le réseau entraînerait une interruption temporaire de la distribution d’eau à Hay Al Matar, entre 09 h 00 et 13 h 00.',

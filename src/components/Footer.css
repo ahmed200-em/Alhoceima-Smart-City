@@ -41,13 +41,13 @@
   color: var(--footer-text);
   font-size: 14px;
   text-underline-offset: 4px;
-  transition: color 0.18s;
-}
-
-.footer-nav a:hover,
-.footer-nav a:focus-visible {
-  color: white;
-  text-decoration: underline;
+  transition: all 0.3s ease-in-out;
+  &:hover,
+  &:focus-visible {
+    color: #8ce7e4;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(5px);
+  }
 }
 
 .site-footer a:focus-visible {
